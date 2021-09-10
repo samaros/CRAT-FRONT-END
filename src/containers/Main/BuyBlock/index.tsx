@@ -52,7 +52,6 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
             >
               <Text size="l" align="center" color="green">CONNECT WALLET TO BUY CRAT</Text>
             </Button>
-            <ImportantAddresses />
           </>
         )}
         {(status === 'CONNECTED' && !whitelisted) && (
@@ -81,7 +80,7 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
             nextStagePrice={0.15}
             className={styles.buyInfo}
           />
-          <div ref={buyBlockRef}>
+          <div style={{ width: '100%' }} ref={buyBlockRef}>
             <BuyCrat
               balance={909090}
               tokenData={cryptoAssets}
@@ -92,6 +91,7 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
           </div>
         </div>
       ) }
+      {status !== 'CONNECTED' && <ImportantAddresses />}
     </div>
   );
 };

@@ -34,9 +34,8 @@ const BuyCrat: FC<Props> = ({
       <Text align="center" color="green" size="xl">YOU BUY CRAT TOKENS BY</Text>
       <Text align="center" color="green" size="xl">SENDING WETH TO OUR ADDRESS</Text>
       <div className={styles.balance}>
-        <Text>
-          YOUR CRAT BALANCE <Text tag="span" color="green">{balance}</Text>
-        </Text>
+        <Text>YOUR CRAT BALANCE</Text>
+        <Text tag="span" color="green">{balance}</Text>
       </div>
       <div className={styles.inputMask}>
         <Input

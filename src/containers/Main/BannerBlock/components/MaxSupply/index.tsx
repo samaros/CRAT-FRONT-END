@@ -10,7 +10,10 @@ type Props = {
 
 const MaxSupply: FC<Props> = ({ className }) => (
   <Card className={cx(styles.container, className)}>
-    <H3 weight="normal" color="green">40,000,000<Text className={styles.text} tag="span" color="green">  CRAT</Text></H3>
+    <div className={styles.text}>
+      <H3 weight="normal" color="green">40,000,000</H3>
+      <Text color="green">CRAT</Text>
+    </div>
     <Text size="xxs">CRAT Max Supply</Text>
   </Card>
 );

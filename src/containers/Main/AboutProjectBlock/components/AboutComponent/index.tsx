@@ -17,7 +17,7 @@ const AboutComponent: FC<AboutComponentType> = ({
       <img className={styles.image} src={image} alt="" />
     </div>
     <div className={styles.textWrapper}>
-      <H3 className={styles.title} color="green">{title}</H3>
+      <H3 className={styles.title} weight="normal" color="green">{title}</H3>
       <Text>{body1}</Text>
       {body2 && (
         <Text className={styles.secondText}>{body2}</Text>

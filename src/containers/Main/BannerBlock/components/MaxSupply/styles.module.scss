@@ -8,10 +8,15 @@
   border-radius: 20px;
   width: 280px;
   height: 100px;
+  // @include flexbox;
+  // flex-direction: column;
 }
 
 .text {
-  vertical-align: text-top;
+  @include flexbox(center, flex-start);
+  :first-child {
+    margin-right: 5px;
+  }
 }
 
 @include forDesktopSm {

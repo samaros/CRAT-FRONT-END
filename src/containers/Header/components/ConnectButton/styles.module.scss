@@ -34,4 +34,13 @@
   .arrow {
     display: none;
   }
+  .container .text {
+    font-size: 15px;
+  }
+}
+
+@include forTablet {
+  .container .text {
+    font-size: 10px;
+  }
 }

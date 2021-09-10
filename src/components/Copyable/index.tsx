@@ -1,8 +1,8 @@
 import React, { FC, PropsWithChildren } from 'react';
 import cx from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Icon } from '..';
 // import { setNotification } from '../../utils';
+import { Copy } from 'assets/img';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -39,7 +39,7 @@ const Copyable: FC<PropsWithChildren<Props>> = ({
     )}
     >
       {children}
-      {withIcon && <Icon icon="copy" className={cx(styles.icon, classNameIcon)} />}
+      {withIcon && <img src={Copy} alt="" className={cx(styles.icon, classNameIcon)} />}
     </div>
   </CopyToClipboard>
 );

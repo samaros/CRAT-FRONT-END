@@ -30,10 +30,9 @@
   }
 }
 
-.copyIcon {
+.container .address .copyIcon {
   background: $color-green;
-  width: 30px;
-  height: 30px;
+  padding: 5px;
   border-radius: 12px;
   color: $color-white;
 }

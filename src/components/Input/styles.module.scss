@@ -41,6 +41,7 @@
   height: 100px;
   cursor: text;
   @include flexbox(center, flex-end);
+  box-sizing: border-box !important;
 
   &.border {
     border: 1px solid $color-green;
@@ -74,10 +75,11 @@
   left: 40px;
   top: 45px;
   border: none;
-  font-size: 30px;
+  font-size: 25px;
   background: none !important;
-  width: 100%;
   color: $color-green;
+  box-sizing: border-box !important;
+  width: 80% ;
 
   &:focus {
     outline: none;

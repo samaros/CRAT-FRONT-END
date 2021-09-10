@@ -48,8 +48,9 @@ const ConnectButton: FC<Props> = ({ className, color = 'default' }) => {
         disabled={isDesktopSize}
         className={cx(className, styles[color])}
       >
-        <Text size="xs">{buttonText}</Text>
-        <div className={cx(styles.arrow, { [styles.isDown]: isConnectDropdownMenuVisible })} />
+        <Text className={styles.text} size="xs">{buttonText}</Text>
+        {isConnected &&
+          (<div className={cx(styles.arrow, { [styles.isDown]: isConnectDropdownMenuVisible })} />)}
       </Button>
       {isConnectDropdownMenuVisible && (
         <ConnectDropdownMenu

@@ -14,12 +14,13 @@
 }
 
 .balance {
+  width: 100%;
   margin: 35px 0 20px 0;
   padding: 0 20px;
   height: 40px;
   border-radius: 60px;
   background: $color-gray;
-  @include flexbox(center, space-between);
+  @include flexbox();
 }
 
 .inputMask {
@@ -33,6 +34,7 @@
   border-radius: 60px;
   padding-right: 20px;
 }
+
 
 .select {
   width: 170px;
@@ -56,7 +58,10 @@
 }
 
 @include forTablet {
-  .input {
-    width: 100px;
+  .balance {
+    height: 70px;
+    width: unset;
+    flex-direction: column;
+    padding: 10px 20px;
   }
 }

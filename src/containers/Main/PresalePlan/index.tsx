@@ -26,7 +26,7 @@ const PresalePlan = () => {
   return (
     <div className={styles.container}>
       <div className={styles.fadeLeft} />
-      <Text className={styles.title} align="center" size="xxxl">PRESALE PLAN</Text>
+      <Text className={styles.title} align="center" size="xxl">PRESALE PLAN</Text>
       <Carousel
         classNameProp={styles.carousel}
         classNameArrowLeft={styles.arrowLeft}

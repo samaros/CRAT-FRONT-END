@@ -57,7 +57,7 @@ const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => (
         errors, touched, values, handleChange, handleBlur, isValid,
       }) => (
         <Form className={styles.formWrapper} translate={undefined}>
-          <Text color="green" size="xl">WHITELIST AND BUT TOKENS!</Text>
+          <Text color="green" size="xl" className={styles.title}>WHITELIST AND BUY TOKENS!</Text>
           <Field
             id="address"
             name="address"

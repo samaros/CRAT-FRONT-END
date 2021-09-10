@@ -14,15 +14,15 @@ const Banner: FC<Props> = ({ scrollToBuy }) => (
   <div className={cx(styles.container)}>
     <div className={styles.textAndImage}>
       <div className={styles.textBlock}>
-        <Text className={styles.text} size="xxl" weight="normal" color="white">
+        <Text className={styles.text} size="xxl" color="white">
           <Text className={styles.text} size="xxl" weight="bold" tag="span" color="yellow">CratD2C</Text> Token, the very first
         </Text>
-        <Text className={styles.text} size="xxl" weight="normal" color="white">Digital Utility Token Backed with</Text>
-        <Text className={styles.text} size="xxl" weight="normal" color="white">Full Transactions</Text>
-        <Text className={styles.text} size="xxl" weight="normal" color="white">
+        <Text className={styles.text} size="xxl" color="white">Digital Utility Token Backed with</Text>
+        <Text className={styles.text} size="xxl" color="white">Full Transactions</Text>
+        <Text className={styles.text} size="xxl" color="white">
           <Text className={styles.text} size="xxl" weight="bold" tag="span" color="yellow">E-Commerce</Text> Platform.
         </Text>
-        <Text className={styles.text} size="xxl" weight="normal" color="white">2Markets - 1Token</Text>
+        <Text className={styles.text} size="xxl" color="white">2Markets - 1Token</Text>
         <Button className={styles.buyBtn} size="big" color="yellow" onClick={scrollToBuy}>
           <Text weight="bold" color="green">BUY CRAT TOKEN</Text>
         </Button>

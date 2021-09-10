@@ -23,14 +23,14 @@ const PresaleSlide: FC<Props> = ({
       <H4 color={isActive ? 'white' : 'black'}>{title}</H4>
       <div className={cx(styles.lineBreak, { [styles.active]: isActive })} />
       <H4 color={isActive ? 'white' : 'black'}>{`${price}$`}</H4>
-      <H4 color={isActive ? 'white' : 'black'}>{`${amount} TOKENS`}</H4>
+      <H4 weight={isActive ? 'medium' : 'normal'} color={isActive ? 'white' : 'black'}>{`${amount} TOKENS`}</H4>
       {isButton ? (
         <Button
           disabled={!isActive}
           className={cx(styles.buyBtn, { [styles.active]: isActive })}
           color="white"
         >
-          <H4 className={styles.btnText} color="green">{status}</H4>
+          <H4 weight="normal" className={styles.btnText} color="green">{status}</H4>
         </Button>
       ) : (
         <H4 className={styles.closed}>CLOSED</H4>

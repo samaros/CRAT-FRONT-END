@@ -11,6 +11,7 @@
       background: $color-green;
       color: white;
       @include flexbox;
+      padding: 10px;
     }
 
     &:hover {

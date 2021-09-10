@@ -19,7 +19,6 @@
 
 .container .input {
   font-size: 18px !important;
-  width: 400px !important;
 }
 
 .submitBtn {
@@ -35,7 +34,15 @@
 }
 
 @include forTablet {
-  .container .input {
-    width: 200px !important;
+
+  .container {
+    padding: 10px;
+  }
+  // .container .input {
+  //   width: 200px !important;
+  // }
+
+  .container .title {
+    font-size: 20px;
   }
 }

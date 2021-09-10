@@ -28,3 +28,4 @@ export { default as closeRing } from './closeRing.svg';
 export { default as successRing } from './successRing.svg';
 export { default as infoRing } from './infoRing.svg';
 export { default as Logo } from './logo.svg';
+export { default as Copy } from './copy.svg';

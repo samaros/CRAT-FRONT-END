@@ -7,6 +7,7 @@ import {
 } from 'components';
 import { CryptoAssetsType } from 'types';
 import { cratToken } from 'appConstants';
+import { validateOnlyNumbers } from 'utils';
 import styles from './styles.module.scss';
 import ImportantAddresses from '../ImportantAddresses';
 import { BuyError } from './components';
@@ -25,10 +26,10 @@ const BuyCrat: FC<Props> = ({
   const [spendAmount, setSpendAmount] = useState('');
 
   const handleSpendAmountChange = useCallback((event) => {
-    if (!event.target.value.match(/^[0-9]+$|^$/)) {
-      return;
+    const { value } = event.target;
+    if(validateOnlyNumbers(value)) {
+      setSpendAmount(event.target.value);
     }
-    setSpendAmount(event.target.value);
   }, [spendAmount]);
 
   const receiveAmount = useCallback(() => (+spendAmount * 157).toString(), [spendAmount]);

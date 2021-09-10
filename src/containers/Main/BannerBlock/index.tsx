@@ -37,7 +37,6 @@ const Banner: FC<Props> = ({ scrollToBuy }) => (
         <MaxSupply className={styles.maxSupply} />
         <CoinPercent />
       </div>
-      <input type="text" pattern="[0-9]*" />
     </div>
   </div>
 );

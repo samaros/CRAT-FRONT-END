@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useCallback, useState } from 'react';
 import { Text } from 'components/Typography';
 import cx from 'classnames';

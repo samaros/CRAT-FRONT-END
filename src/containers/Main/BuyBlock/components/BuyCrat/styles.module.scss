@@ -21,6 +21,10 @@
   border-radius: 60px;
   background: $color-gray;
   @include flexbox();
+
+  :first-child {
+    margin-right: 5px;
+  }
 }
 
 .inputMask {
@@ -49,10 +53,12 @@
 @include forDesktopSm {
   .container {
     padding: 5px;
+    line-height: 10px;
   }
 
   .container .select {
     width: 135px;
+    height: 50px;
     padding: 5px;
   }
 }

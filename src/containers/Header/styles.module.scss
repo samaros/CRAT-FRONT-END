@@ -47,4 +47,15 @@
 }
 
 
+@include forTablet {
+  .container {
+    justify-content: space-between;
+    padding-left: 40px;
+  }
+  
+  .container .connectBtn {
+    padding: 7px 10px;
+  }
+}
+
 

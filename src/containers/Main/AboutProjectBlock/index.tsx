@@ -44,7 +44,7 @@ const AboutProject = () => {
         {aboutComponents}
       </Carousel>
       <H2 className={styles.text} weight="normal" align="center" color="green">WHY WON&rsquo;T YOU WANT TO GRAB MOST OF</H2>
-      <H2 className={styles.text} weight="normal" align="center" color="green">THE CRAT TOKENS THAT WILL VE IN</H2>
+      <H2 className={styles.text} weight="normal" align="center" color="green">THE CRAT TOKENS THAT WILL BE IN</H2>
       <H2 className={styles.text} weight="normal" align="center" color="green">EXISTENCE?</H2>
     </div>
   );

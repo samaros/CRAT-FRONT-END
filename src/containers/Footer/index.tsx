@@ -19,7 +19,7 @@ const Footer = () => (
       <Text size="xxxs">POWERED BY</Text>
       <img src={RBLogo} alt="" />
     </div>
-    <Text>CRAT © 2021 ALL RIGHTS RESERVED.</Text>
+    <Text>CRAT © 2021 ALL RIGHTS RESERVED</Text>
   </div>
 );
 

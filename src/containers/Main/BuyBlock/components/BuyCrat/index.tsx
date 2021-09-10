@@ -45,6 +45,7 @@ const BuyCrat: FC<Props> = ({
           onChange={handleSpendAmountChange}
           isBorder={false}
           classNameInput={styles.input}
+          type="number"
         />
         <Select
           options={tokenData}

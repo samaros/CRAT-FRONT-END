@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Text, H2 } from 'components/Typography';
 import cx from 'classnames';
-import logo from 'assets/img/Logo.svg';
+import { Logo as logo } from 'assets/img';
 import styles from './styles.module.scss';
 
 type Props = {

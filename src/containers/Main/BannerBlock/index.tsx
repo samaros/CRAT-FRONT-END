@@ -18,7 +18,7 @@ const Banner: FC<Props> = ({ scrollToBuy }) => (
           <Text className={styles.text} size="xxl" weight="bold" tag="span" color="yellow">CratD2C</Text> Token, the very first
         </Text>
         <Text className={styles.text} size="xxl" color="white">Digital Utility Token Backed with</Text>
-        <Text className={styles.text} size="xxl" color="white">Full Transactions</Text>
+        <Text className={styles.text} size="xxl" color="white">Full Transactions on</Text>
         <Text className={styles.text} size="xxl" color="white">
           <Text className={styles.text} size="xxl" weight="bold" tag="span" color="yellow">E-Commerce</Text> Platform.
         </Text>

@@ -24,6 +24,7 @@ type Props = {
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void,
   required?: boolean,
   isBorder?: boolean,
+  pattern?: string,
 };
 
 const Input:FC<PropsWithChildren<Props>> = ({
@@ -46,6 +47,7 @@ const Input:FC<PropsWithChildren<Props>> = ({
   required,
   children,
   isBorder = true,
+  pattern = '',
 }) => (
   <div className={cx(styles.wrap, className)}>
     <label
@@ -95,6 +97,7 @@ const Input:FC<PropsWithChildren<Props>> = ({
           )}
           onChange={onChange}
           onBlur={onBlur}
+          pattern={pattern}
         />
         {children}
         {error && (

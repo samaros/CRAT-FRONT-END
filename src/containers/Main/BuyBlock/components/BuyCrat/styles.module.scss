@@ -20,7 +20,7 @@
   height: 40px;
   border-radius: 60px;
   background: $color-gray;
-  @include flexbox();
+  @include flexbox(center, space-between);
 
   :first-child {
     margin-right: 5px;

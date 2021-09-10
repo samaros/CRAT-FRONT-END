@@ -25,6 +25,9 @@ const BuyCrat: FC<Props> = ({
   const [spendAmount, setSpendAmount] = useState('');
 
   const handleSpendAmountChange = useCallback((event) => {
+    if (!event.target.value.match(/^[0-9]+$|^$/)) {
+      return;
+    }
     setSpendAmount(event.target.value);
   }, [spendAmount]);
 
@@ -45,7 +48,7 @@ const BuyCrat: FC<Props> = ({
           onChange={handleSpendAmountChange}
           isBorder={false}
           classNameInput={styles.input}
-          type="number"
+          pattern="[0-9]*"
         />
         <Select
           options={tokenData}

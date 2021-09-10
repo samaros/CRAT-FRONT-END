@@ -62,6 +62,7 @@ const BuyCrat: FC<Props> = ({
           name="cratToken"
           label="YOU WILL RECEIVE CRAT"
           isBorder={false}
+          className={styles.inputWrap}
           classNameInput={styles.input}
         />
         <Select

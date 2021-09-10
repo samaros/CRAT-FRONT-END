@@ -1,0 +1,31 @@
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/variables.scss";
+
+.resultProgressBar {
+  position: relative;
+  border-radius: 30px;
+  min-height: 16px;
+  width: 100%;
+  background: $color-gray;
+  z-index: 999;
+}
+.resultProgressBarInner {
+  position: absolute;
+  border-radius: 30px;
+  left: 0;
+  display: inline-block;
+  height: 100%;
+  background: $color-green;
+  transition: $transition-time;
+}
+
+.resultProgressPercent {
+  position: absolute;
+  color: $color-white;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}

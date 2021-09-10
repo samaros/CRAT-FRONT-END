@@ -1,0 +1,40 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.toastify {
+  @include flexbox;
+  background: $color-white;
+
+  &.success {
+    border-color: $color-green;
+    .icon, .title {
+      color: $color-green;
+    }
+  }
+
+  &.error {
+    .icon, .title {
+      color: $color-white;
+    }
+  }
+
+  &.info {
+    .icon, .title {
+      color: $color-white;
+    }
+  }
+}
+
+.icon {
+  margin-right: 25px;
+  font-size: 12px;
+}
+
+.title {
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+
+.message {
+  font-weight: 400;
+}

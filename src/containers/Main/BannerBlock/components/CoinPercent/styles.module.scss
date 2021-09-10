@@ -1,0 +1,36 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  position: relative;
+  background: linear-gradient(218.82deg, rgba(23, 144, 68, 0.2) -3.31%, rgba(255, 255, 255, 0.2) 89.97%), #FFFFFF;
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.1);
+  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+}
+
+.title, .text {
+  text-align: right;
+}
+
+.image {
+  position: absolute;
+  left: -20px;
+  top: -50px;
+}
+
+@include forDesktopSm {
+  .title, .text {
+    text-align: left;
+  }
+
+  .image {
+    position: absolute;
+    left: unset;
+  }
+
+  .container {
+    width: 100%;
+  }
+}

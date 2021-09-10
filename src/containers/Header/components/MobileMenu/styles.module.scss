@@ -1,0 +1,33 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+
+.container {
+  padding: 50px 30px 30px 30px;
+  background: $color-green;
+  @include flexbox(flex-start, center);
+  flex-direction: column;
+  width: 100%;
+}
+
+.connectWrapper {
+  margin: 50px 0;
+  width: 100%;
+}
+
+.logo {
+  transform: scale(1.4);
+  margin-left: 20px;
+}
+
+.links {
+  margin-bottom: 50px;
+}
+
+.container .connectBtn > p {
+  font-size: 20px;
+}
+
+.bottomText {
+  margin-top: 20px;
+  width: 100%;
+}

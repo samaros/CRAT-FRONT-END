@@ -1,0 +1,38 @@
+@import '../../../../../../../assets/styles/mixins';
+@import '../../../../../../../assets/styles/variables';
+
+.container {
+  box-shadow: 0px 4px 30px rgba(38, 150, 83, 0.4);
+  border-radius: 20px;
+  width: 300px;
+  height: 40px;
+  padding: 0 20px;
+  margin: 10px 0;
+  @include flexbox(center, space-between);
+}
+
+.orange {
+  background: $color-orange;
+}
+
+.green {
+  background: linear-gradient(180deg, #44C678 0%, #269653 100%), #269653;
+}
+
+
+.iconClose {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: $color-white;
+  font-size: 14px;
+  @include flexbox;
+
+  &.orange{
+    color: $color-orange;
+  }
+
+  &.green {
+    color: $color-green;
+  }
+}

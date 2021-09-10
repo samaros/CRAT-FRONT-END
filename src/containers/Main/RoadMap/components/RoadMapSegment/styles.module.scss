@@ -1,0 +1,46 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  position: relative;
+  padding: 20px;
+  @include flexbox;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: $color-light-green-200;
+    top: 20px;
+    left: 0%;
+  }
+}
+
+.circle {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-white;
+  background: $color-light-green-200;
+  border-radius: 50%;
+  @include flexbox;
+  margin-top: -8px;
+
+  &:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: $color-green;
+    border-radius: 50%;
+  }
+}
+
+.textWrapper {
+  .text{
+    margin: 10px 0;
+  }
+}
+
+.body {
+  max-width: 170px;
+}

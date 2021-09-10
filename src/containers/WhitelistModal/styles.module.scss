@@ -1,0 +1,41 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  width: 550px;
+  background: linear-gradient(218.82deg, rgba(23, 144, 68, 0.2) -3.31%, rgba(255, 255, 255, 0.2) 89.97%), #FFFFFF;
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.formWrapper {
+  @include flexbox(center, space-between);
+  flex-direction: column;
+  & > :not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.container .input {
+  font-size: 18px !important;
+  width: 400px !important;
+}
+
+.submitBtn {
+  width: 250px;
+  height: 60px;
+}
+
+@include forDesktopSm {
+  .container {
+    max-height: 100vh;
+    overflow-y: scroll;
+  }
+}
+
+@include forTablet {
+  .container .input {
+    width: 200px !important;
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.text {
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+  }
+}

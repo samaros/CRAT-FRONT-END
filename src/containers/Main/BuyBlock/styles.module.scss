@@ -1,0 +1,153 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+
+.container {
+  padding: 60px 170px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.buyContainer {
+  margin: 0 auto;
+  padding: 70px 150px;
+  width: 100%;
+  height: 500px;
+  background: url('../../../assets/img/background.png');
+  background-size: auto 100%;
+  border-radius: 40px;
+  box-shadow: 0px 4px 30px rgba(38, 150, 83, 0.4);
+  margin: 30px 0;
+}
+
+.cryptoAssets {
+  margin: 30px 0;
+}
+
+.cryptoLabel {
+  @include flexbox(center, space-around);
+  padding: 0 20px;
+  width: 150px;
+  height: 70px;
+  border-radius: 40px;
+  background: $color-white;
+  margin: 0 10px;
+
+  & > .cryptoName {
+    text-transform: uppercase;
+  }
+}
+
+.walletIcon {
+  color: $color-green;
+  margin-right: 10px;
+}
+
+.buyLogicContainer {
+  @include flexbox(flex-start, space-around);
+  width: 100%;
+  margin-top: -60px;
+  padding: 0 5%;
+}
+
+.buyLogic {
+  flex-basis: 60%;
+}
+
+.buyInfo {
+  flex-basis: 30%;
+}
+
+.whitelistBlock {
+  height: 180px;
+  background: linear-gradient(0deg, #F9CA00, #F9CA00), #E2D901;
+  border-radius: 60px;
+  width: 100%;
+  @include flexbox;
+  flex-direction: column;
+}
+
+.arrow {
+  display: none;
+}
+
+.buyBtn {
+  margin: 10px 0;
+}
+
+@include forDesktopMiddle {
+  .container {
+    padding: 60px 100px;
+  }
+
+  .buyContainer {
+    padding: 70px;
+  }
+
+  .cryptoLabel {
+    width: 120px;
+    height: 55px;
+    & > img {
+      max-width: 40px;
+    }
+  }
+
+  .buyLogicContainer {
+    @include flexbox;
+    flex-direction: column;
+  }
+
+  .whitelistBlock {
+    margin: 0 auto;
+    height: 140px;
+    border-radius: 40px;
+    width: 95%;
+    
+  }
+
+  .buyInfo {
+    width: 100%;
+  }
+
+  .buyLogic {
+    width: 100%;
+  }
+
+}
+
+@include forDesktopSm {
+  .cryptoLabel {
+    width: 100px;
+    height: 40px;
+    & > img {
+      max-width: 30px;
+    }
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .buyContainer {
+    height: 390px;
+    padding: 30px 0;
+  }
+
+  .buyLogicContainer {
+    margin-top: 30px;
+    padding: 0;
+  }
+
+  .buyBtn {
+    margin: 0 20px;
+  }
+}
+
+@include forTablet {
+  .cryptoLabel {
+    width: 80px;
+    height: 40px;
+    & > img {
+      max-width: 22px;
+    }
+  }
+}

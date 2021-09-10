@@ -1,0 +1,90 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  padding: 100px 0;
+  position: relative;
+  @include flexbox;
+  flex-direction: column;
+  width: 100%;
+  &::before {
+    content: ' ';
+    position: absolute;
+    width: 80%;
+    height: 1px;
+    background: $color-green;
+    top: 48%;
+  }
+}
+
+.links {
+  width: 300px;
+}
+
+.link > *{
+  color: $color-black;
+  font-size: 21px;
+  font-weight: 600;
+  &:hover {
+    color: $color-green;
+  }
+}
+
+.centerBlock {
+  position: relative;
+  height: 200px;
+  @include flexbox;
+  &::before {
+    content: ' ';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: $color-green;
+    filter: blur(120px);
+  }
+}
+
+.iconWrapper {
+  width: 310px;
+  height: 60px;
+  background: $color-white;
+}
+
+.icon {
+  color: $color-white;
+}
+
+.rockBlock {
+  position: absolute;
+  right: 10%;
+  top: 55%;
+  & > p {
+    text-align: right;
+  }
+}
+
+@include forDesktopSm {
+  .container {
+    background: $color-beige;
+    border-radius: 20px;
+    &::before {
+      top: 42%;
+    }
+  }
+
+  .iconWrapper {
+    background: $color-beige;
+  }
+
+  .centerBlock {
+    height: 100px;
+  }
+
+  .rockBlock {
+    all: unset;
+    margin-bottom: 20px;
+    & > p {
+      text-align: center;
+    }
+  }
+}

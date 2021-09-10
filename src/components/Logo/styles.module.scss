@@ -1,0 +1,35 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  @include flexbox(flex-start, center);
+}
+.logo {
+  width: 55px;
+  height: 55px;
+  margin: 0 5px;
+}
+
+.textWrapper {
+  max-width: 150px;
+}
+
+@include forDesktopSm {
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .textWrapper {
+    max-width: 100px;
+  }
+
+  .textWrapper p {
+    font-size: 7px !important;
+  }
+
+  .textWrapper h2 {
+    font-size: 20px !important;
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  margin: 55px;
+  @include flexbox(center, space-around);
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+}
+
+.imageWrapper {
+  border-radius: 40px;
+  width: 40%;
+  max-width: 500px;
+  height: 350px;
+  @include flexbox;
+
+  &.yellow {
+    background: linear-gradient(180deg, #FFEA8F 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  &.green {
+    background: linear-gradient(180deg, #75DD9F 0%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
+.textWrapper {
+  width: 40%;
+  max-width: 500px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.secondText {
+  margin-top: 30px;
+}
+
+@include forDesktopMiddle {
+  .image {
+    transform: scale(0.8);
+  }
+
+  .container {
+    flex-direction: column !important;
+    margin: 20px;
+  }
+
+  .imageWrapper {
+    width: 100%;
+  }
+
+  .textWrapper {
+    width: 100%;
+  }
+}

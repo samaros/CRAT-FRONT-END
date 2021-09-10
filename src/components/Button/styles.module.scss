@@ -1,0 +1,81 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.button {
+  @include flexbox(center, center);
+  font-weight: 400;
+
+  border-radius: 40px;
+
+  &:hover {
+    filter: brightness(110%);
+  }
+
+  &:active {
+    filter: brightness(90%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.normal {
+    padding: 6px 13px;
+  }
+
+  &.big {
+    padding: 20px 40px;
+  }
+
+  &.isFullWidth {
+    width: 100%;
+  }
+
+  &.green {
+    background: $color-green;
+
+    &:disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      transition: all $transition-time ease-in;
+      background: $color-gray;
+    }
+  }
+
+  &.yellow {
+    background: $color-yellow;
+  }
+
+  &.white {
+    background: $color-white;
+  }
+
+  &.gray {
+    background: $color-gray;
+  }
+
+  &.transparentWhite {
+    padding: 20px 30px;
+    color: $color-white;
+    background-color: transparent;
+    border: 1px solid $color-white;
+
+    &:hover {
+      color: $color-yellow;
+      border-color: $color-yellow;
+    }
+
+    &:active {
+      filter: brightness(85%);
+    }
+  }
+
+  &.transparent {
+    padding: 0;
+
+    &:disabled {
+      pointer-events: none;
+      transition: all $transition-time ease-in;
+    }
+  }
+}

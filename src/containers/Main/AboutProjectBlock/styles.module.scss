@@ -1,0 +1,37 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+
+.container {
+  padding-top: 200px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.carouselAbout {
+  display: none;
+}
+
+.arrowLeft {
+  top: -5%;
+  left: 15%;
+}
+
+.arrowRight {
+  top: -5%;
+  right: 15%;
+}
+
+@include forDesktopSm {
+  .listAbout {
+    display: none;
+  }
+
+  .carouselAbout {
+    display: block;
+    margin-top: 80px;
+  }
+
+  .text {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,26 @@
+$scroll-color: #DDDCE2;
+
+* {
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    border: 1px solid $scroll-color;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $scroll-color;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  &::-webkit-resizer {
+    display: none;
+  }
+}

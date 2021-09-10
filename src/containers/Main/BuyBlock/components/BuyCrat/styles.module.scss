@@ -1,0 +1,62 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; 
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.05);
+  border-radius: 20px;
+  background: $color-white;
+  max-width: 800px;
+  line-height: 30px;
+  @include flexbox;
+  flex-direction: column;
+}
+
+.balance {
+  margin: 35px 0 20px 0;
+  padding: 0 20px;
+  height: 40px;
+  border-radius: 60px;
+  background: $color-gray;
+  @include flexbox(center, space-between);
+}
+
+.inputMask {
+  margin: 16px 0;
+  width: 100%;
+  @include flexbox(center, space-between);
+  border: 1px solid #269653;
+  box-sizing: border-box;
+
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.05);
+  border-radius: 60px;
+  padding-right: 20px;
+}
+
+.select {
+  width: 170px;
+}
+
+.buyBtn {
+  margin-top: 30px;
+  width: 250px;
+  height: 60px;
+}
+
+@include forDesktopSm {
+  .container {
+    padding: 5px;
+  }
+
+  .container .select {
+    width: 135px;
+    padding: 5px;
+  }
+}
+
+@include forTablet {
+  .input {
+    width: 100px;
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.card {
+  width: 100%;
+
+  padding: 25px;
+
+  border-radius: 10px;
+}
+
+.titleWrap {
+  width: 100%;
+  @include flexbox(center, flex-start);
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid $color-border;
+}
+
+:root .title {
+  font-size: 16px;
+}
+
+.icon {
+  margin-right: 12px;
+
+  font-size: 15px;
+  color: $color-green;
+}

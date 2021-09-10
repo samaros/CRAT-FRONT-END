@@ -1,0 +1,31 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.copy {
+  cursor: pointer;
+  @include flexbox;
+
+  &.withIcon {
+    transition: all $transition-time ease-in;
+    .icon {
+      background: $color-green;
+      color: white;
+      @include flexbox;
+    }
+
+    &:hover {
+      filter: brightness(115%);
+      .icon {
+        transition: all $transition-time ease-in;
+      }
+    }
+
+    &:active {
+      filter: brightness(90%);
+    }
+  }
+}
+
+.icon {
+  margin-left: 5px;
+}

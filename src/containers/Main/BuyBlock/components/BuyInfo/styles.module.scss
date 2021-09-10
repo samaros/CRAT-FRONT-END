@@ -1,0 +1,43 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  margin-right: 20px;
+}
+
+.blockInfo {
+  display: block;
+  & > * {
+    margin-bottom: 20px;
+  }
+}
+
+.carouselInfo {
+  display: none;
+}
+
+.arrow {
+  display: none;
+}
+
+@include forDesktopMiddle {
+  .blockInfo, .container {
+    width: 100%;
+  }
+}
+
+
+@include forDesktopSm {
+  .container {
+    width: 100%;
+  }
+  .blockInfo {
+    display: none;
+  }
+
+  .carouselInfo {
+    display: block;
+    margin-bottom: 30px;
+  }
+}
+

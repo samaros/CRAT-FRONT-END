@@ -1,0 +1,158 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+
+.wrap {
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  width: 100%;
+  display: flex;
+
+  &.top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.labelText {
+  @include flexbox(center, flex-end);
+  position: absolute;
+  z-index: 99;
+
+  top: 15px;
+  left: 40px;
+
+  &.top {
+    margin-bottom: 6px;
+    margin-left: 8px;
+  }
+
+  &.left {
+    margin-right: 12px;
+  }
+}
+
+.inputWrap {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  cursor: text;
+  @include flexbox(center, flex-end);
+
+  &.border {
+    border: 1px solid $color-green;
+  }
+  
+  &.disabled {
+    cursor: auto;
+  }
+
+  padding: 0 25px 0 20px;
+
+  box-sizing: border-box;
+  border-radius: 60px;
+  transition: 0.2s all;
+
+  &.required {
+
+    &::after {
+      position: absolute;
+      content: '*';
+      top: 5px;
+      left: 5px;
+
+      color: $color-red;
+    }
+  }
+}
+
+.input {
+  position: absolute;
+  left: 40px;
+  top: 45px;
+  border: none;
+  font-size: 30px;
+  background: none !important;
+  width: 100%;
+  color: $color-green;
+
+  &:focus {
+    outline: none;
+    background-color: $color-white;
+  }
+
+  &::placeholder {
+    color: $color-black;
+  }
+
+  // &:disabled {
+  //   cursor: not-allowed;
+  // }
+
+  &.bigRightPadding {
+    padding-right: 50px;
+  }
+
+  &.error {
+    background-color: $color-red;
+    border: 1px solid $color-red;
+  }
+
+  &[type="number"] {
+    appearance: none;
+    -moz-appearance: textfield;
+
+    &:hover,
+    &:focus {
+      appearance: none;
+      -moz-appearance: textfield;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.textError {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+
+  margin-top: 3px;
+
+  text-align: right;
+  font-size: 10px;
+  color: $color-red;
+}
+
+.icon {
+  position: absolute;
+  font-size: 14px;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 25px;
+}
+
+.iconError {
+  color: $color-red;
+}
+
+.iconCorrect {
+  color: $color-green;
+}
+
+@include forTablet {
+  .input {
+    font-size: 15px;
+  }
+
+  .labelText {
+    font-size: 8px !important;
+  }
+}

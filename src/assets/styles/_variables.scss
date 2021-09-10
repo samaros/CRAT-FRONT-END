@@ -1,0 +1,24 @@
+$default-font: 'IBM';
+
+$color-black: var(--color-black-100);
+$color-white: var(--color-white-100);
+$color-green: var(--color-green-100);
+$color-light-green: var(--color-green-200);
+$color-light-green-200: var(--color-green-300);
+$color-yellow: var(--color-yellow-100);
+$color-red: var(--color-red-100);
+$color-beige: var(--color-beige-100);
+$color-gray: var(--color-gray-100);
+$color-orange: var(--color-orange-100);
+
+$transition-time: 0.125s;
+
+$cellSpacing: 30px;
+
+$color-border: $color-green;
+
+$headerHeight: 110px;
+$contentMarginTop: $cellSpacing;
+
+// sidebar
+$logoHeight: 110px;

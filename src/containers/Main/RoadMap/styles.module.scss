@@ -1,0 +1,41 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+
+.container {
+  margin: 100px 0;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.title {
+  margin: 50px;
+}
+
+.roadMap {
+  max-width: 96%;
+  object-fit: contain;
+}
+
+.mobileRoadMap {
+  display: none;
+}
+
+.arrow {
+  display: none;
+}
+
+@include forDesktopSm {
+  .container {
+    background: #F8F8F8;
+    height: 450px;
+  }
+
+  .roadMap {
+    display: none;
+  }
+
+  .mobileRoadMap {
+    display: block;
+  }
+}

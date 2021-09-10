@@ -1,0 +1,50 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  position: relative;
+  @include flexbox(center, space-around);
+  // background: $color-green;
+  padding: 60px;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.burger {
+  width: 30px;
+  height: 30px;
+  display: none;
+  position: absolute;
+  left: 10px;
+}
+
+@include forDesktopSm {
+  .container {
+    background: $color-green;
+    position: static;
+    height: 60px;
+    padding: 20px 20px 20px 50px;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .container .links {
+    display: none;
+  }
+
+  .container .connectBtn {
+    padding: 10px 20px;
+  }
+}
+
+
+

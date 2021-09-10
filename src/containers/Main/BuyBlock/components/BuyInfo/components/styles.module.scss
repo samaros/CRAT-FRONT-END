@@ -1,0 +1,33 @@
+@import '../../../../../../assets/styles/mixins';
+@import '../../../../../../assets/styles/variables';
+
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; 
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.05);
+  background: $color-white;
+  border-radius: 20px;
+  line-height: 30px;
+  min-width: 300px;
+  @include flexbox(flex-start, flex-start);
+  flex-direction: column;
+}
+
+.mgTop {
+  margin-top: 10px;
+}
+
+.dayLeft {
+  opacity: .5;
+}
+
+.progressBar {
+  margin: 20px 0 10px 0;
+}
+
+@include forDesktopMiddle {
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}

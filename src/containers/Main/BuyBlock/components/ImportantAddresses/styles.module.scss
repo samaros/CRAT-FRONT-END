@@ -1,0 +1,51 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  margin-top: 50px;
+  padding: 30px 30px 0 30px;
+  width: 100%;
+  background-color: $color-beige;
+  border-radius: 20px;
+}
+
+.importantAddressesTitle {
+  margin-bottom: 10px;
+}
+
+.address {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  @include flexbox(center, space-between);
+  &::before {
+    position: absolute;
+    content: ' ';
+    width: 100%;
+    @include flexbox;
+    height: 2px;
+    background: $color-black;
+    opacity: 0.03;
+    top: 0;
+  }
+}
+
+.copyIcon {
+  background: $color-green;
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  color: $color-white;
+}
+
+@include forDesktopSm {
+  .container {
+    padding: 15px;
+  }
+}
+
+@include forTablet {
+  .container .text {
+    font-size: 12px;
+  }
+}

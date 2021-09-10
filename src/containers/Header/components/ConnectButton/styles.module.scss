@@ -1,0 +1,37 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+
+.container {
+  position: relative;
+}
+
+.arrow {
+  width: 8px;
+  height: 8px;
+  margin: 0 0 5px 5px;
+  border: solid $color-white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  transition: $transition-time ease-in-out;
+
+  &.isDown {
+    transform: rotate(225deg);
+    margin: 0 0 0 5px;
+  }
+}
+
+.text {
+  color: $color-white;
+}
+
+.container .yellow {
+  background: $color-yellow;
+  width: 100%;
+  color: $color-green;
+}
+
+@include forDesktopSm {
+  .arrow {
+    display: none;
+  }
+}

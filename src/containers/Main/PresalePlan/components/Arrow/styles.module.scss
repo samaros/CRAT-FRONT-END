@@ -1,0 +1,24 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  @include flexbox;
+  z-index: 9999;
+  width: 120px;
+  &::before {
+    display: none;
+  }
+}
+
+.arrowWrapper {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.15);
+  border-radius: 50%;
+  @include flexbox;
+
+  &.left {
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+  }
+}

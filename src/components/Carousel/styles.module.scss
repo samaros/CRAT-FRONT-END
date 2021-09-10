@@ -1,0 +1,107 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  position: relative;
+  background: linear-gradient(180deg, #FFEA8F 79.21%, #FFFFFF 106.14%);
+  border-radius: 40px;
+  height: 80vh;
+  padding-top: 80px;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.title {
+  margin-bottom: 60px;
+}
+
+.indicatorsWrapper {
+  width: 100%;
+}
+
+.indicator {
+  width: 50px;
+  height: 6px;
+  background: $color-white;
+  border-radius: 12px;
+  margin-right: 10px;
+
+  &.active {
+    background: linear-gradient(180deg, #44C678 0%, #269653 100%), #269653;
+  }
+}
+
+.slickDots {
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  margin-top: 50px;
+  & > li::marker {
+    display: none;
+    color: transparent;
+  }
+}
+
+.carousel {
+  & > div {
+    overflow: visible;
+  }
+}
+
+.fadeCommon {
+  position: absolute;
+  width: 160px;
+  height: 100%;
+  background: linear-gradient(270deg, #FFE98A 0%, rgba(255, 233, 138, 0) 100%);
+  border-radius: 40px;
+  top: 0;
+  z-index: 99;
+}
+
+.fadeRight {
+  @extend .fadeCommon;
+  right: 0;
+}
+
+.fadeLeft {
+  @extend .fadeCommon;
+  left: 0;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.arrowLeft {
+  top: 40%;
+  left: -15px;
+
+  &.noArrow {
+    display: none;
+  }  
+}
+.arrowRight {
+  top: 40%;
+  right: -15px;
+}
+
+.noArrow {
+  display: none !important;
+} 
+
+@include forDesktopSm {
+  .container {
+    height: 70vh;
+    padding-top: 30px;
+  }
+  .fadeCommon {
+    display: none;
+  }
+
+  .container .title {
+    margin-bottom: 100px;
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .slide {
+    margin: 0 auto;
+  }
+}

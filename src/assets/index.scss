@@ -1,0 +1,135 @@
+@import './styles/variables';
+@import './styles/fonts';
+@import './fonts/fontello/css/fontello.css';
+@import './fonts/fontello/css/fontello-codes.css';
+@import './styles/scroll';
+
+:root {
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-green: #12873e;
+  --color-light-green: #269653;
+  --color-light-green-2: #48D17F;
+  --color-yellow: #F3EA23;
+  --color-red: red;
+  --color-beige: #f8f8f8;
+  --color-gray: #E9E9E9;
+  --color-orange: #F09242;
+
+  --color-black-100: var(--color-black);
+  --color-white-100: var(--color-white);
+  --color-green-100: var(--color-green);
+  --color-green-200: var(--color-light-green);
+  --color-green-300: var(--color-light-green-2);
+  --color-yellow-100: var(--color-yellow);
+  --color-red-100: var(--color-red);
+  --color-beige-100: var(--color-beige);
+  --color-gray-100: var(--color-gray);
+  --color-orange-100: var(--color-orange);
+}
+
+html,
+body,
+div[id="root"] {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: $default-font, Arial, Helvetica, sans-serif;
+  background-color: $color-white;
+  color: $color-black;
+  border: 0;
+
+  scroll-behavior: smooth;
+
+  // toastify styles
+  .Toastify__toast {
+    padding: 15px;
+    min-height: auto;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: none;
+
+    &--success {
+      background-color: $color-green;
+      border: 1px solid $color-green;
+      // color: $color-text-success;
+    }
+
+    &--error {
+      background-color: $color-red;
+      border: 1px solid $color-red;
+    }
+
+    &--info {
+      background-color: $color-yellow;
+      border: 1px solid $color-yellow;
+    }
+  }
+
+  .Toastify__close-button {
+    align-self: center;
+    width: 18px;
+    height: 18px;
+    color: $color-green;
+
+    & > svg {
+      display: none;
+    }
+
+    // custom cross
+    &:after {
+      content: '\e80a';
+      font-family: 'Fontello', Arial, Helvetica, sans-serif;
+    }
+  }
+
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  transition: $transition-time;
+}
+
+ul, ol {
+  margin: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  transition: $transition-time;
+}
+
+button {
+  box-shadow: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}

@@ -1,0 +1,26 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  width: 100%;
+  @include flexbox(center, space-around);
+}
+
+.btnIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  z-index: 100;
+}
+
+.green {
+  color: $color-yellow;
+}
+
+.yellow {
+  color: $color-green;
+}
+
+.left {
+  margin-right: 5px;
+}

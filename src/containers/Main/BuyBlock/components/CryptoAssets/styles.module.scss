@@ -1,0 +1,61 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  @include flexbox;
+  &.vert {
+    flex-direction: column
+  }
+}
+
+.cryptoLabel {
+  @include flexbox(center, space-around);
+  padding: 0 20px;
+  width: 150px;
+  height: 70px;
+  border-radius: 40px;
+  background: $color-white;
+  margin: 0 10px;
+
+  & > .cryptoName {
+    text-transform: uppercase;
+  }
+}
+
+.rate {
+  width: 100%;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+
+  & > .cryptoName {
+    margin-left: 10px;
+  }
+}
+
+@include forDesktopMiddle {
+  .cryptoLabel {
+    width: 115px;
+    height: 55px;
+    img {
+      width: 40px;
+    }
+    p {
+      margin-top: 5px;
+    }
+  }
+}
+
+@include forTablet {
+  .cryptoLabel {
+    width: 75px;
+    height: 30px;
+    margin: 0 3px;
+    img {
+      width: 25px;
+    }
+    p {
+      margin-top: 5px;
+    }
+  }
+}

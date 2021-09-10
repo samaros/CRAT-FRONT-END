@@ -1,0 +1,21 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.linksWrapper {
+  @include flexbox(center, space-around);
+  width: 35%;
+
+  .link {
+    margin: 0 5px;
+  }
+  
+
+  &.vert {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .link {
+      margin: 10px;
+    }
+  }
+}

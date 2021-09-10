@@ -1,0 +1,21 @@
+@import '../../../../../assets/styles/mixins';
+@import '../../../../../assets/styles/variables';
+
+.container {
+  position: relative;
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.1);
+  background: $color-white;
+  border-radius: 20px;
+  width: 280px;
+  height: 100px;
+}
+
+.text {
+  vertical-align: text-top;
+}
+
+@include forDesktopSm {
+  .container {
+    width: 100%;
+  }
+}

@@ -15,12 +15,12 @@ type Props = {
   className?: string
   balance: string | number,
   tokenData: CryptoAssetsType[],
-  defaultToken: CryptoAssetsType,
+  selectedBuyToken: CryptoAssetsType,
   selectHandler:(value: CryptoAssetsType) => void,
 };
 
 const BuyCrat: FC<Props> = ({
-  className, balance, tokenData, defaultToken, selectHandler,
+  className, balance, tokenData, selectedBuyToken, selectHandler,
 }) => {
   const [spendAmount, setSpendAmount] = useState('');
 
@@ -35,7 +35,7 @@ const BuyCrat: FC<Props> = ({
   return (
     <Card className={cx(styles.container, className)}>
       <Text align="center" color="green" size="xl">YOU BUY CRAT TOKENS BY</Text>
-      <Text align="center" color="green" size="xl">SENDING WETH TO OUR ADDRESS</Text>
+      <Text align="center" color="green" size="xl">{`SENDING ${selectedBuyToken.label.toUpperCase()} TO OUR ADDRESS`}</Text>
       <div className={styles.balance}>
         <Text>YOUR CRAT BALANCE</Text>
         <Text color="green">{balance}</Text>
@@ -52,7 +52,7 @@ const BuyCrat: FC<Props> = ({
         />
         <Select
           options={tokenData}
-          value={defaultToken}
+          value={selectedBuyToken}
           hideSelectedOptions
           onChange={selectHandler as any}
           classNameControl={styles.select}

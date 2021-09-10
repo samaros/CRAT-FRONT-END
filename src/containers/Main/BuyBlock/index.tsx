@@ -84,7 +84,7 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
             <BuyCrat
               balance={909090}
               tokenData={cryptoAssets}
-              defaultToken={selectedBuyToken}
+              selectedBuyToken={selectedBuyToken}
               selectHandler={handleSelectChange}
               className={styles.buyLogic}
             />

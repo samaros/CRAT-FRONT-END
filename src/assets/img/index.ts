@@ -1,4 +1,3 @@
-export { default as MetamaskConnect } from './metamaskConnect.svg';
 export { default as X } from './x.svg';
 export { default as Percent } from './percent.svg';
 export { default as EthSymbol } from './ethSymbol.svg';
@@ -21,7 +20,6 @@ export { default as bnb } from './bnb.svg';
 export { default as crat } from './crat.svg';
 export { default as RBLogo } from './rbLogo.svg';
 export { default as RoadMapPng } from './roadMapPng.png';
-export { default as RoadMap } from './roadMap.svg';
 export { default as btc } from './btc.svg';
 export { default as weth } from './weth.svg';
 export { default as closeRing } from './closeRing.svg';

@@ -3,8 +3,10 @@
 
 .container {
   background: url('../../../assets/img/background.png') no-repeat;
+  padding: 100px;
   background-size: cover;
-  padding-top: 100px
+  height: 850px;
+  margin-bottom: 0;
 }
 
 .textAndImage {
@@ -14,6 +16,7 @@
 .textBlock {
   max-width: 40%;
   margin-top: 50px;
+  line-height: 20px;
   align-self: flex-start;
   & > .text {
     line-height: 60px;
@@ -25,9 +28,7 @@
 
 .imageBlock {
   & > .cart {
-    width: 50vw;
-    margin-bottom: 200px;
-    max-width: 600px;
+    width: 100%;
   }
 }
 
@@ -46,6 +47,9 @@
 }
 
 @include forDesktopMiddle {
+  .container {
+    padding: 100px 60px 0 60px;
+  }
   .textBlock {
     & > .text {
       font-size: 28px;
@@ -55,10 +59,9 @@
 }
 
 @include forDesktopSm {
-
   .container {
     background: #269653;
-    padding-top: 0;
+    padding: 0;
   }
   .textAndImage {
     @include flexbox(center, flex-start);
@@ -107,4 +110,10 @@
   .buyBtn {
     width: 100%;
   }
+}
+
+@include forTablet {
+  // .container {
+  //   padding: 
+  // }
 }

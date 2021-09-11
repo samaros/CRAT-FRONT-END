@@ -57,6 +57,22 @@ $defaultFlexBoxJustify: center;
   cursor: pointer;
 }
 
+@mixin rotateAnimation {
+  animation-name: my-animation;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    @keyframes my-animation {
+      from {
+        transform: rotate(0deg) scale(1);
+      }
+      to {
+        transform: rotate(5deg) scale(1.1);
+      }
+    }
+}
 // Media request mixins MobileFirst
 @mixin forTablet {
   @media screen and (max-width: 481px) {

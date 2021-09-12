@@ -4,6 +4,7 @@ import { useShallowSelector } from 'hooks';
 import { State, Web3State } from 'types';
 import web3Selector from 'store/web3/selectors';
 import { Links, WhitelistModal } from 'containers';
+import cx from 'classnames';
 import styles from './styles.module.scss';
 import { ConnectButton, MobileMenu } from './components';
 
@@ -34,15 +35,15 @@ const Header: FC<Props> = () => {
       <Logo className={styles.logo} />
       <Links className={styles.links} whitelistHandler={toggleModal} />
       <ConnectButton className={styles.connectBtn} />
-      {isMenuOpen && (
+      {/* {isMenuOpen && ( */}
       <MobileMenu
-        className={styles.mobileMenu}
+        className={cx(styles.mobileMenu, { [styles.mobileMenuOpen]: isMenuOpen })}
         isConnected={status === 'CONNECTED'}
         address={address || ''}
         toggleMenu={toggleMenu}
         toggleModal={toggleModal}
       />
-      )}
+      {/* )} */}
       <WhitelistModal
         isOpen={isModalOpen}
         onClose={toggleModal}

@@ -4,8 +4,8 @@ import React, {
 import { Text } from 'components/Typography';
 import { Button } from 'components';
 import { cryptoAssets } from 'appConstants';
-import { CryptoAssetsType, State, Web3State } from 'types';
-import web3Selector from 'store/web3/selectors';
+import { CryptoAssetsType, State, WalletState } from 'types';
+import walletSelector from 'store/wallet/selectors';
 import { useShallowSelector } from 'hooks';
 import styles from './styles.module.scss';
 import {
@@ -17,7 +17,10 @@ type Props = {
 };
 
 const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
-  const { status, whitelisted } = useShallowSelector<State, Web3State>(web3Selector.getWeb3());
+  const {
+    status,
+    isWhitelisted,
+  } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
   const [selectedBuyToken, setSelectedBuyToken] = useState<CryptoAssetsType>({
     icon: '',
@@ -54,7 +57,7 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
             </Button>
           </>
         )}
-        {(status === 'CONNECTED' && !whitelisted) && (
+        {(status === 'CONNECTED' && !isWhitelisted) && (
           <div className={styles.whitelistBlock}>
             <Text weight="medium" align="center">You are NOT whitelisted for PreSale events!</Text>
             <Text weight="medium" align="center">Whitelist now:</Text>

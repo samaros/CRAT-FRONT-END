@@ -3,11 +3,9 @@ import { Button } from 'components';
 import { Text } from 'components/Typography';
 import cx from 'classnames';
 import { useShallowSelector } from 'hooks';
-import { Provider, State, Web3State } from 'types';
+import { State, WalletState } from 'types';
 import { shortenPhrase } from 'utils';
-import web3Selector from 'store/web3/selectors';
-import { MetamaskRequestMethod } from 'appConstants';
-import detectEthereumProvider from '@metamask/detect-provider';
+import walletSelector from 'store/wallet/selectors';
 import useWindowSize from 'hooks/useWindowSize';
 import styles from './styles.module.scss';
 import { ConnectDropdownMenu } from '..';
@@ -15,19 +13,18 @@ import { ConnectDropdownMenu } from '..';
 type Props = {
   color?: 'default' | 'yellow',
   className?: string,
+  connectAction: () => void,
+  disconnectAction: () => void,
 };
 
-const ConnectButton: FC<Props> = ({ className, color = 'default' }) => {
-  const { address, status } = useShallowSelector<State, Web3State>(web3Selector.getWeb3());
+const ConnectButton: FC<Props> = ({
+  className, color = 'default', connectAction, disconnectAction,
+}) => {
+  const { address, status } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
   const isConnected = status === 'CONNECTED';
 
   const buttonText = isConnected && address ? shortenPhrase(address) : 'CONNECT WALLET';
-
-  const handleConnectMetamask = async () => {
-    const provider: Provider = await detectEthereumProvider();
-    provider.request({ method: MetamaskRequestMethod.eth_requestAccounts });
-  };
 
   const { width } = useWindowSize();
 
@@ -39,7 +36,7 @@ const ConnectButton: FC<Props> = ({ className, color = 'default' }) => {
     setIsConnectDropdownMenuVisible(!isConnectDropdownMenuVisible);
   }, [isConnectDropdownMenuVisible]);
 
-  const connectBtnHandler = isConnected ? toggleConnectDropdownMenu : handleConnectMetamask;
+  const connectBtnHandler = isConnected ? toggleConnectDropdownMenu : connectAction;
   return(
     <div className={styles.container}>
       <Button
@@ -52,10 +49,11 @@ const ConnectButton: FC<Props> = ({ className, color = 'default' }) => {
         {isConnected &&
           (<div className={cx(styles.arrow, { [styles.isDown]: isConnectDropdownMenuVisible })} />)}
       </Button>
-      {isConnectDropdownMenuVisible && (
+      {(isConnectDropdownMenuVisible && status === 'CONNECTED') && (
         <ConnectDropdownMenu
           isAbsolute
           address={address || ''}
+          disconnectAction={disconnectAction}
         />
       )}
     </div>

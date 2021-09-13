@@ -7,3 +7,5 @@ export * from './presalePlan';
 export * from './cryptoAssets';
 export * from './importantAddresses';
 export * from './roadMap';
+export * from './resCodes';
+export { default as URL } from './url';

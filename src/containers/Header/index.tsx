@@ -1,17 +1,23 @@
 import { Burger, Logo } from 'components';
 import React, { useCallback, useState, FC } from 'react';
 import { useShallowSelector } from 'hooks';
-import { State, Web3State } from 'types';
-import web3Selector from 'store/web3/selectors';
+import { Provider, State, WalletState } from 'types';
+import walletSelector from 'store/wallet/selectors';
 import { Links, WhitelistModal } from 'containers';
 import cx from 'classnames';
-import styles from './styles.module.scss';
+import { disconnectWallet } from 'store/wallet/actions';
+import { useDispatch } from 'react-redux';
+import detectEthereumProvider from '@metamask/detect-provider';
+import { MetamaskRequestMethod } from 'appConstants';
 import { ConnectButton, MobileMenu } from './components';
+import styles from './styles.module.scss';
 
 type Props = {
 };
 
 const Header: FC<Props> = () => {
+  const dispatch = useDispatch();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,7 +29,16 @@ const Header: FC<Props> = () => {
     setModalOpen(!isModalOpen);
   }, [isModalOpen]);
 
-  const { status, address } = useShallowSelector<State, Web3State>(web3Selector.getWeb3());
+  const { status, address } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
+
+  const handleDisconnect = useCallback(() => {
+    dispatch(disconnectWallet());
+  }, []);
+
+  const handleConnect = async () => {
+    const provider: Provider = await detectEthereumProvider();
+    provider.request({ method: MetamaskRequestMethod.eth_requestAccounts });
+  };
 
   return (
     <header className={styles.container}>
@@ -34,16 +49,20 @@ const Header: FC<Props> = () => {
       />
       <Logo className={styles.logo} />
       <Links className={styles.links} whitelistHandler={toggleModal} />
-      <ConnectButton className={styles.connectBtn} />
-      {/* {isMenuOpen && ( */}
+      <ConnectButton
+        className={styles.connectBtn}
+        connectAction={handleConnect}
+        disconnectAction={handleDisconnect}
+      />
       <MobileMenu
         className={cx(styles.mobileMenu, { [styles.mobileMenuOpen]: isMenuOpen })}
         isConnected={status === 'CONNECTED'}
         address={address || ''}
         toggleMenu={toggleMenu}
         toggleModal={toggleModal}
+        connectAction={handleConnect}
+        disconnectAction={handleDisconnect}
       />
-      {/* )} */}
       <WhitelistModal
         isOpen={isModalOpen}
         onClose={toggleModal}

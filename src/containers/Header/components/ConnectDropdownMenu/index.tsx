@@ -9,17 +9,18 @@ import styles from './styles.module.scss';
 
 type Props = {
   address: string,
-  isAbsolute?: boolean
+  isAbsolute?: boolean,
+  disconnectAction: () => void,
 };
 
-const ConnectDropdownMenu: FC<Props> = ({ address, isAbsolute = false }) => (
+const ConnectDropdownMenu: FC<Props> = ({ address, isAbsolute = false, disconnectAction }) => (
   <Card className={cx(styles.container, { [styles.absolute]: isAbsolute })}>
     <Text tag="p" weight="bold" color="green">ACCOUNT</Text>
     <Text tag="p" color="black" size="xs">CONNECTED WITH METAMASK</Text>
     <Copyable withIcon valueToCopy={address} classNameIcon={styles.icon}>
       <div className={styles.addressContainer}>{shortenPhrase(address)}</div>
     </Copyable>
-    <Button color="transparent">
+    <Button color="transparent" onClick={disconnectAction}>
       <Icon className={styles.disconnectIcon} icon="exit" />
       DISCONNECT
     </Button>

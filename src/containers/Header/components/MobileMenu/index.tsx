@@ -12,10 +12,18 @@ type Props = {
   className?: string,
   toggleModal: () => void,
   toggleMenu: () => void,
+  connectAction: () => void,
+  disconnectAction: () => void,
 };
 
 const MobileMenu: FC<Props> = ({
-  isConnected, address, className, toggleModal, toggleMenu,
+  isConnected,
+  address,
+  className,
+  toggleModal,
+  toggleMenu,
+  connectAction,
+  disconnectAction,
 }) => (
   <div className={cx(styles.container, className)}>
     <Logo className={styles.logo} />
@@ -23,9 +31,15 @@ const MobileMenu: FC<Props> = ({
       {isConnected ? (
         <ConnectDropdownMenu
           address={address}
+          disconnectAction={disconnectAction}
         />
       ) : (
-        <ConnectButton className={styles.connectBtn} color="yellow" />
+        <ConnectButton
+          className={styles.connectBtn}
+          color="yellow"
+          connectAction={connectAction}
+          disconnectAction={disconnectAction}
+        />
       )}
     </div>
     <Links

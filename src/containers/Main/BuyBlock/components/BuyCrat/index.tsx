@@ -49,7 +49,6 @@ const BuyCrat: FC<Props> = ({
           onChange={handleSpendAmountChange}
           isBorder={false}
           classNameInput={styles.input}
-          pattern="[0-9]*"
         />
         <Select
           options={tokenData}

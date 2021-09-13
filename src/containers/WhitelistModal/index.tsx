@@ -9,7 +9,9 @@ import {
   Field,
   FieldProps,
 } from 'formik';
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC, SyntheticEvent, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { whitelist } from 'store/wallet/actions';
 import * as Yup from 'yup';
 import WhitelistError from './components/WhitelistError';
 import styles from './styles.module.scss';
@@ -25,43 +27,47 @@ type Props = {
 };
 
 const validationSchema = Yup.object().shape({
-  address: Yup.string()
-    .length(42)
-    .required('Required'),
+  address: Yup.string(),
+  // .length(42)
+  // .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
-const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => (
-  <Modal
-    isOpen={isOpen}
-    onClose={onClose}
-    className={styles.container}
-  >
-    <Formik
-      initialValues={{
-        address: '',
-        email: '',
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(
-        values: FormValues,
-        { setSubmitting }: FormikHelpers<FormValues>,
-      ) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 500);
-      }}
+const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
+
+  const handleWhitelist = useCallback(({ address, email }) => {
+    dispatch(whitelist({ address, email }));
+  }, []);
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      className={styles.container}
     >
-      {({
-        errors, touched, values, handleChange, handleBlur, isValid,
-      }) => (
-        <Form className={styles.formWrapper} translate={undefined}>
-          <Text color="green" size="xl" className={styles.title}>WHITELIST AND BUY TOKENS!</Text>
-          <Field
-            id="address"
-            name="address"
-            render={
+      <Formik
+        initialValues={{
+          address: '',
+          email: '',
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(
+          values: FormValues,
+          { setSubmitting }: FormikHelpers<FormValues>,
+        ) => {
+          handleWhitelist(values);
+          setSubmitting(false);
+        }}
+      >
+        {({
+          errors, touched, values, handleChange, handleBlur, isValid,
+        }) => (
+          <Form className={styles.formWrapper} translate={undefined}>
+            <Text color="green" size="xl" className={styles.title}>WHITELIST AND BUY TOKENS!</Text>
+            <Field
+              id="address"
+              name="address"
+              render={
                 ({ form: { isSubmitting } }: FieldProps) => (
                   <Input
                     name="address"
@@ -74,15 +80,15 @@ const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => (
                   />
                 )
               }
-          />
-          {errors.address && touched.address && (
-          <WhitelistError
-            body="BSC address must be exactly 42 characters long starting with '0x'"
-          />
-          )}
-          <Field
-            id="email"
-            render={
+            />
+            {errors.address && touched.address && (
+            <WhitelistError
+              body="BSC address must be exactly 42 characters long starting with '0x'"
+            />
+            )}
+            <Field
+              id="email"
+              render={
                 ({ form: { isSubmitting } }: FieldProps) => (
                   <Input
                     name="email"
@@ -95,24 +101,25 @@ const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => (
                   />
                 )
               }
-          />
-          {errors.email && touched.email && (
-          <WhitelistError
-            body="Please include '@' and proper domain"
-          />
-          )}
-          <Button
-            className={styles.submitBtn}
-            color="green"
-            type="submit"
-            disabled={!isValid}
-          >
-            <Text color="white" weight="bold" size="l">WHITELIST</Text>
-          </Button>
-        </Form>
-      )}
-    </Formik>
-  </Modal>
-);
+            />
+            {errors.email && touched.email && (
+            <WhitelistError
+              body="Please include '@' and proper domain"
+            />
+            )}
+            <Button
+              className={styles.submitBtn}
+              color="green"
+              type="submit"
+              disabled={!isValid}
+            >
+              <Text color="white" weight="bold" size="l">WHITELIST</Text>
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Modal>
+  );
+};
 
 export default WhitelistModal;

@@ -13,15 +13,15 @@ import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const web3PersistConfig = {
-  key: 'web3',
+const walletPersistConfig = {
+  key: 'wallet',
   storage,
   whitelist: ['status'],
 };
 
 const reducers = {
   ...reducer,
-  web3: persistReducer(web3PersistConfig, reducer.web3),
+  wallet: persistReducer(walletPersistConfig, reducer.wallet),
 };
 
 declare global {

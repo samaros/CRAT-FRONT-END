@@ -15,6 +15,8 @@ function* saga({ type }: ReturnType<typeof getTokens>) {
       url: URL.tokens,
     });
     const { data } = response;
+    console.log(data, 13123);
+
     yield put(tokensSetState(data));
 
     yield put(apiActions.success(type));

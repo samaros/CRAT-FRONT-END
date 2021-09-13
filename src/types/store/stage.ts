@@ -1,10 +1,10 @@
 export type StageType = {
   status: string,
-  currentStagePrice: number,
+  currentStagePriceUsd: number,
   currentStageNumber: number,
   currentStageDaysLeft: number,
-  currentStageTokenSold: string,
-  currentStageTokenLimit: string,
+  currentStageTokensSold: number,
+  currentStageTokensLimit: number,
   nextStagePriceUsd: number,
 };
 

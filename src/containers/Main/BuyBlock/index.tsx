@@ -4,7 +4,9 @@ import React, {
 import { Text } from 'components/Typography';
 import { Button } from 'components';
 import { cryptoAssets } from 'appConstants';
-import { CryptoAssetsType, State, WalletState } from 'types';
+import {
+  CryptoAssetsType, State, WalletState,
+} from 'types';
 import walletSelector from 'store/wallet/selectors';
 import { useShallowSelector } from 'hooks';
 import styles from './styles.module.scss';
@@ -14,6 +16,7 @@ import {
 
 type Props = {
   buyBlockRef: RefObject<HTMLDivElement>,
+  // tokens: any,
 };
 
 const BuyBlock: FC<Props> = ({ buyBlockRef }) => {

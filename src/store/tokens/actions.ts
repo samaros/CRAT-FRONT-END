@@ -1,7 +1,7 @@
 import actionTypes from 'store/tokens/actionTypes';
-import { TokensState } from 'types/store/tokens';
+import { Token } from 'types/store/tokens';
 
-export const tokensSetState = (payload: Partial<TokensState>) => ({
+export const tokensSetState = (payload: Token[]) => ({
   type: actionTypes.TOKENS_SET_STATE,
   payload,
 });

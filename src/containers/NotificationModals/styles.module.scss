@@ -1,0 +1,24 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.container {
+  width: 600px;
+  background: linear-gradient(218.82deg, rgba(23, 144, 68, 0.2) -3.31%, rgba(255, 255, 255, 0.2) 89.97%), #FFFFFF;
+  box-shadow: 0px 10px 40px rgba(34, 34, 34, 0.1);
+}
+
+.blackText {
+  color: $color-black;
+}
+
+.whiteCircle {
+  margin: 30px auto;
+  background: $color-white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.instructions {
+  margin-top : 20px;
+}

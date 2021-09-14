@@ -27,9 +27,9 @@ type Props = {
 };
 
 const validationSchema = Yup.object().shape({
-  address: Yup.string(),
-  // .length(42)
-  // .required('Required'),
+  address: Yup.string()
+    .length(42)
+    .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 

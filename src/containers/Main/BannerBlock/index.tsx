@@ -4,6 +4,7 @@ import { CartAndItemsPng, RocketPng } from 'assets/img';
 import { Button } from 'components';
 import cx from 'classnames';
 import { useScroll } from 'hooks';
+import { ApprovePendingModal } from 'containers/NotificationModals';
 import styles from './styles.module.scss';
 import { CoinPercent, MaxSupply } from './components';
 
@@ -15,6 +16,7 @@ const Banner: FC<Props> = ({ scrollToBuy }) => {
   const { scrollY } = useScroll();
   return (
     <>
+      <ApprovePendingModal isOpen onClose={() => alert('close')} />
       <div className={cx(styles.container)}>
         <div className={styles.textAndImage}>
           <div className={styles.textBlock}>

@@ -10,7 +10,7 @@ const setState: TokensStateActionFn<typeof tokensSetState> = (
   { payload },
 ) => ({
   ...state,
-  ...payload,
+  data: payload,
 });
 
 export const TOKENS_ACTIONS = {

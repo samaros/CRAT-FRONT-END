@@ -5,5 +5,8 @@ export * from './getSlidesNum';
 export * from './validateOnlyNumbers';
 export * from './getErrorMsg';
 export * from './validateStatuses';
+export * from './getWeb3';
+export * from './createContract';
+export * from './formatTokenAmount';
 export { default as createReducer } from './createReducer';
 export { default as ErrorWithCode } from './ErrorWithCode';

@@ -5,26 +5,54 @@ import cx from 'classnames';
 import {
   Button, Card, Input, Select,
 } from 'components';
-import { CryptoAssetsType } from 'types';
-import { cratToken } from 'appConstants';
+import {
+  NotificationModalState, StageState, State, Token,
+} from 'types';
+import { bnbMaskAddress, cratToken } from 'appConstants';
 import { validateOnlyNumbers } from 'utils';
+import { useDispatch } from 'react-redux';
+import { approveTokensSpend, signBuy } from 'store/wallet/actions';
+import NotificationModal from 'containers/NotificationModals';
+import notificationModalSelector from 'store/notificationModal/selectors';
+import stageSelector from 'store/stage/selectors';
+import { useShallowSelector } from 'hooks';
+import { notificationModalSetState } from 'store/notificationModal/actions';
 import styles from './styles.module.scss';
 import ImportantAddresses from '../ImportantAddresses';
-import { BuyError } from './components';
 
 type Props = {
   className?: string
   balance: string | number,
-  tokenData: CryptoAssetsType[],
-  selectedBuyToken: CryptoAssetsType,
-  selectHandler:(value: CryptoAssetsType) => void,
+  tokenData: any,
+  selectedBuyToken: any,
+  selectHandler:(value: Token) => void,
+  isWhitelisted: boolean,
 };
 
 const BuyCrat: FC<Props> = ({
-  className, balance, tokenData, selectedBuyToken, selectHandler,
+  className, balance, tokenData, selectedBuyToken, selectHandler, isWhitelisted,
 }) => {
+  const dispatch = useDispatch();
+
+  const {
+    isOpen,
+    result,
+    type,
+  } = useShallowSelector<State, NotificationModalState>(notificationModalSelector.getModalInfo);
+
+  const { currentStagePriceUsd } = useShallowSelector<State, StageState>(stageSelector.getStage);
+
+  const closeModal = useCallback(() => {
+    dispatch(notificationModalSetState({
+      isOpen: false,
+      result: '',
+      type: '',
+    }));
+  }, []);
+
   const [spendAmount, setSpendAmount] = useState('');
 
+  const isButtonActive = !!+spendAmount;
   const handleSpendAmountChange = useCallback((event) => {
     const { value } = event.target;
     if(validateOnlyNumbers(value)) {
@@ -32,14 +60,37 @@ const BuyCrat: FC<Props> = ({
     }
   }, [spendAmount]);
 
-  const receiveAmount = useCallback(() => (+spendAmount * 157).toString(), [spendAmount]);
+  const approveOrBuy = useCallback(() => {
+    const { address, price, decimals } = selectedBuyToken.value;
+    if (address === bnbMaskAddress) {
+      dispatch(signBuy({
+        amountToPay: spendAmount,
+        tokenAddress: address,
+      }));
+    } else {
+      dispatch(approveTokensSpend({
+        address,
+        price,
+        decimals,
+        amount: spendAmount,
+      }));
+    }
+  }, [selectedBuyToken, spendAmount]);
+  const receiveAmount = () => {
+    if (Object.keys(selectedBuyToken)) {
+      return (+spendAmount * +selectedBuyToken?.value?.price) / currentStagePriceUsd;
+    }
+
+    return +spendAmount;
+  };
+
   return (
     <Card className={cx(styles.container, className)}>
       <Text align="center" color="green" size="xl">YOU BUY CRAT TOKENS BY</Text>
-      <Text align="center" color="green" size="xl">{`SENDING ${selectedBuyToken.label.toUpperCase()} TO OUR ADDRESS`}</Text>
+      <Text align="center" color="green" size="xl">{`SENDING ${selectedBuyToken.label} TO OUR ADDRESS`}</Text>
       <div className={styles.balance}>
         <Text>YOUR CRAT BALANCE</Text>
-        <Text color="green">{balance}</Text>
+        <Text color="green">{`${balance} CRAT`}</Text>
       </div>
       <div className={styles.inputMask}>
         <Input
@@ -51,8 +102,8 @@ const BuyCrat: FC<Props> = ({
           classNameInput={styles.input}
         />
         <Select
-          options={tokenData}
-          value={selectedBuyToken}
+          options={tokenData as any}
+          value={selectedBuyToken as any}
           hideSelectedOptions
           onChange={selectHandler as any}
           classNameControl={styles.select}
@@ -60,7 +111,7 @@ const BuyCrat: FC<Props> = ({
       </div>
       <div className={styles.inputMask}>
         <Input
-          value={receiveAmount()}
+          value={receiveAmount().toString()}
           disabled
           name="cratToken"
           label="YOU WILL RECEIVE CRAT"
@@ -77,14 +128,20 @@ const BuyCrat: FC<Props> = ({
       <Button
         color="green"
         className={styles.buyBtn}
-        disabled
+        disabled={!isWhitelisted || !isButtonActive}
+        onClick={approveOrBuy}
       >
         <Text size="l" weight="medium" color="white">BUY</Text>
       </Button>
-      <BuyError type="error" />
-      <BuyError type="info" />
-      <BuyError type="success" />
       <ImportantAddresses />
+      {isOpen && (
+        <NotificationModal
+          isOpen={isOpen}
+          type={type}
+          result={result}
+          onClose={closeModal}
+        />
+      )}
     </Card>
   );
 };

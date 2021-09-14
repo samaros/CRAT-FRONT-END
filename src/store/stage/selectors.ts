@@ -1,5 +1,5 @@
-import type { State, TokensState } from 'types';
+import type { State, StageState } from 'types';
 
 export default {
-  getWallet: (state: State): TokensState => state.tokens,
+  getStage: (state: State): StageState => state.stage,
 };

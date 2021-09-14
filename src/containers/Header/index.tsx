@@ -3,7 +3,7 @@ import React, { useCallback, useState, FC } from 'react';
 import { useShallowSelector } from 'hooks';
 import { Provider, State, WalletState } from 'types';
 import walletSelector from 'store/wallet/selectors';
-import { Links, WhitelistModal } from 'containers';
+import { Links } from 'containers';
 import cx from 'classnames';
 import { disconnectWallet } from 'store/wallet/actions';
 import { useDispatch } from 'react-redux';
@@ -13,21 +13,16 @@ import { ConnectButton, MobileMenu } from './components';
 import styles from './styles.module.scss';
 
 type Props = {
+  toggleModal: () => void,
 };
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = ({ toggleModal }) => {
   const dispatch = useDispatch();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
   }, [isMenuOpen]);
-
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const toggleModal = useCallback(() => {
-    setModalOpen(!isModalOpen);
-  }, [isModalOpen]);
 
   const { status, address } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
@@ -62,10 +57,6 @@ const Header: FC<Props> = () => {
         toggleModal={toggleModal}
         connectAction={handleConnect}
         disconnectAction={handleDisconnect}
-      />
-      <WhitelistModal
-        isOpen={isModalOpen}
-        onClose={toggleModal}
       />
     </header>
   );

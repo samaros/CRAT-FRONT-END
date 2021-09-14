@@ -7,6 +7,7 @@ const initialState: WalletState = {
   address: '',
   status: WalletStatus.NOT_AVAILABLE,
   isWhitelisted: false,
+  cratBalance: 0,
 };
 
 export default createReducer(initialState, WALLETS_ACTIONS);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 import { useMetamask } from 'hooks';
 import Routes from '../Routes';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Routes />
-      <ToastContainer hideProgressBar position="top-right" />
+      {/* <ToastContainer hideProgressBar position="top-right" /> */}
     </>
   );
 };

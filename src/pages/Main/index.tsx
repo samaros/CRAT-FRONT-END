@@ -1,5 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { Layout } from 'containers';
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { Layout, WhitelistModal } from 'containers';
 import {
   Banner,
   AboutProject,
@@ -10,7 +15,7 @@ import {
 import walletSelector from 'store/wallet/selectors';
 import tokensSelector from 'store/tokens/selectors';
 import { useDispatch } from 'react-redux';
-import { checkIsWhitelisted } from 'store/wallet/actions';
+import { checkIsWhitelisted, getCratBalance } from 'store/wallet/actions';
 import { useShallowSelector } from 'hooks';
 import { State, TokensState, WalletState } from 'types';
 import { getTokens } from 'store/tokens/actions';
@@ -18,16 +23,23 @@ import { getStage } from 'store/stage/actions';
 
 const Main = () => {
   const buyBlockRef = useRef(null);
-  const { address } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
-  const tokens = useShallowSelector<State, TokensState>(tokensSelector.getTokens);
-  console.log(tokens);
+  const { address, cratBalance } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
+  const { data } = useShallowSelector<State, TokensState>(tokensSelector.getTokens);
+
   const dispatch = useDispatch();
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = useCallback(() => {
+    setModalOpen(!isModalOpen);
+  }, [isModalOpen]);
 
   useEffect(() => {
     if (address) {
       dispatch(checkIsWhitelisted({ address }));
       dispatch(getTokens());
       dispatch(getStage());
+      dispatch(getCratBalance());
     }
   }, [address]);
 
@@ -36,7 +48,9 @@ const Main = () => {
     buyBlockRef.current.scrollIntoView();
   };
   return (
-    <Layout>
+    <Layout
+      toggleModal={toggleModal}
+    >
       <Banner
         scrollToBuy={scrollToBuy}
       />
@@ -44,9 +58,14 @@ const Main = () => {
       <PresalePlan />
       <Buy
         buyBlockRef={buyBlockRef}
-        // tokens={tokens}
+        tokens={data}
+        cratBalance={cratBalance}
       />
       <RoadMap />
+      <WhitelistModal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+      />
     </Layout>
   );
 };

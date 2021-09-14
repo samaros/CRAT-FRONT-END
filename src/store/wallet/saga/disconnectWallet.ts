@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { call, put, takeLatest } from 'redux-saga/effects';
 import apiActions from 'store/api/actions';
 import { WalletStatus } from 'appConstants';
@@ -15,7 +14,6 @@ function* disconnectWalletSaga({ type, payload }: ReturnType<typeof disconnectWa
     // @ts-ignore
     const provider: Provider = yield call(detectEthereumProvider);
     let updatedStatus;
-    provider._events.disconnect();
     if (!status) {
       if (!provider || !provider.isMetaMask) {
         updatedStatus = WalletStatus.NOT_AVAILABLE;

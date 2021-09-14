@@ -1,101 +1,46 @@
-@import '../../assets/styles/mixins';
 @import '../../assets/styles/variables';
-
-.body {
-  overflow: hidden;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9;
-
-  width: 100vw;
-  height: 100vh;
-
-  @include flexbox;
-
-  overflow: auto;
-
-  background: rgba(43, 43, 43, .7);
-}
+@import '../../assets/styles/mixins';
 
 .modal {
   position: relative;
-
-  width: auto;
-  max-width: 1200px;
-
-  margin-left: auto;
-  margin-right: auto;
-  padding: 22px 30px 50px;
-
-  background-color: $color-white;
-  border-radius: 10px;
-
   &:focus {
     outline: none;
   }
 }
 
-.header {
-  width: 100%;
-
-  margin-bottom: 25px;
-
-  &.withTitle {
-    padding-bottom: 25px;
-  }
-
-  &.left {
-    @include flexbox(center, flex-start);
-  }
-
-  &.center {
-    @include flexbox(center, center);
-  }
-
-  &.right {
-    @include flexbox(center, flex-end);
-  }
+.content {
+  position: relative;
+  min-width: 220px;
+  padding: 40px 80px;
+  max-height: 90vh;
+  border-radius: 10px;
+  overflow: auto;
+  z-index: 9999;
 }
 
-.title {
-  margin-right: 20px;
-  font-size: 30px;
-}
-
-.btn {
+.closeBtn {
   position: absolute;
-  outline: none;
-}
-
-.btnClose {
   top: 15px;
   right: 15px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  z-index: 5;
   background: $color-green;
-  height: 24px;
-  width: 24px;
   border-radius: 50%;
+  padding: 3px 2px 3px 4px;
+  margin-left: 2px;
+  z-index: 99999;
 }
 
-.btnBack {
-  transform: rotate(90deg);
-  margin-bottom: 3px;
-  margin-right: 35px;
-}
-
-.iconClose {
-  font-size: 14px;
-  color: $color-white;
-}
-
-.iconBack {
-  font-size: 10px;
-  color: $color-white;
-  background: $color-green;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+.overlay {
+  @include flexbox;
+  background: rgba(43, 43, 43, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  z-index: 9999;
 }

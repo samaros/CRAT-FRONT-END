@@ -27,3 +27,6 @@ export { default as successRing } from './successRing.svg';
 export { default as infoRing } from './infoRing.svg';
 export { default as Logo } from './logo.svg';
 export { default as Copy } from './copy.svg';
+export { default as Success } from './success.svg';
+export { default as Reject } from './reject.svg';
+export { default as Pending } from './pending.svg';

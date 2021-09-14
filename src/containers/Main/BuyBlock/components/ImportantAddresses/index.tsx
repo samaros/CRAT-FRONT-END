@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Copyable } from 'components';
 import { Text } from 'components/Typography';
 import { importantAddresses } from 'appConstants';
+import { shortenPhrase } from 'utils';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -18,7 +19,7 @@ const ImportantAddresses: FC<Props> = () => (
         <div className={styles.address} key={name}>
           <div>
             <Text className={styles.text} tag="p" weight="bold" color="green">{name}</Text>
-            <Text className={styles.text} tag="p" color="black">{address}</Text>
+            <Text className={styles.text} tag="p" color="black">{shortenPhrase(address, 30)}</Text>
           </div>
           <Copyable
             withIcon

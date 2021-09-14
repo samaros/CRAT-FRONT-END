@@ -23,6 +23,21 @@ export const signBuy = (payload: SignBuyPayload) => ({
   payload,
 });
 
+export const getCratBalance = () => ({
+  type: actionTypes.WALLETS_GET_CRAT_BALANCE,
+});
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const approveTokensSpend = (payload: any) => ({
+  type: actionTypes.WALLETS_APPROVE_TOKENS_SPEND,
+  payload,
+});
+
+export const sendTokens = (payload: { address: string, amount: number }) => ({
+  type: actionTypes.WALLETS_SEND_TOKENS,
+  payload,
+});
+
 export const checkIsWhitelisted = (payload: CheckIsWhitelistedPayload) => ({
   type: actionTypes.WALLETS_CHECK_IS_WHITELISTED,
   payload,

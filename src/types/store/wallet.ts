@@ -4,6 +4,7 @@ export type WalletState = {
   address: string,
   status: WalletStatus,
   isWhitelisted: boolean,
+  cratBalance: number,
 };
 
 export type CheckIsWhitelistedPayload = {

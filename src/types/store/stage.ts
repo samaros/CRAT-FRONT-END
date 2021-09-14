@@ -8,6 +8,4 @@ export type StageType = {
   nextStagePriceUsd: number,
 };
 
-export type StageState = {
-  stage: StageType,
-} | {};
+export type StageState = StageType;

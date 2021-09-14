@@ -4,20 +4,26 @@ import { Header, Footer } from '..';
 
 type Props = {
   withoutHeader?: boolean,
+  toggleModal: () => void,
 };
 
 const Layout: FC<PropsWithChildren<Props>> = ({
   withoutHeader = false,
   children,
+  toggleModal,
 }) => (
   <div className={styles.contentWrap}>
     {!withoutHeader && (
-      <Header />
+      <Header
+        toggleModal={toggleModal}
+      />
     )}
     <main className={styles.content}>
       {children}
     </main>
-    <Footer />
+    <Footer
+      toggleModal={toggleModal}
+    />
   </div>
 );
 

@@ -9,7 +9,7 @@ import {
   NotificationModalState, StageState, State, Token,
 } from 'types';
 import { bnbMaskAddress, cratToken } from 'appConstants';
-import { validateOnlyNumbers } from 'utils';
+import { getTokenAmountDisplay, validateOnlyNumbers } from 'utils';
 import { useDispatch } from 'react-redux';
 import { approveTokensSpend, signBuy } from 'store/wallet/actions';
 import NotificationModal from 'containers/NotificationModals';
@@ -90,7 +90,7 @@ const BuyCrat: FC<Props> = ({
       <Text align="center" color="green" size="xl">{`SENDING ${selectedBuyToken.label} TO OUR ADDRESS`}</Text>
       <div className={styles.balance}>
         <Text>YOUR CRAT BALANCE</Text>
-        <Text color="green">{`${balance} CRAT`}</Text>
+        <Text color="green">{`${getTokenAmountDisplay(balance.toString(), 8)} CRAT`}</Text>
       </div>
       <div className={styles.inputMask}>
         <Input

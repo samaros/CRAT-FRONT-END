@@ -26,12 +26,20 @@ function* saga({ type, payload }: ReturnType<typeof approveTokensSpend>) {
 
     const myAddress = yield select(walletsSelector.getProp('address'));
     // @ts-ignore
-    const erc20Contract = yield call(createContract, address, erc20Abi);
+    const cratToken = yield call(createContract, address, erc20Abi);
 
-    yield call(erc20Contract.methods.approve(
+    const allowance = yield call(cratToken.methods.allowance(
+      myAddress,
       crowdsaleContractAddress,
-      getTokenAmount(amount, decimals),
-    ).send, { from: myAddress });
+    ).call, { from: myAddress });
+    console.log(allowance, getTokenAmount(amount, decimals), 123123123);
+
+    if (allowance < getTokenAmount(amount, decimals)) {
+      yield call(cratToken.methods.approve(
+        crowdsaleContractAddress,
+        getTokenAmount(amount, decimals),
+      ).send, { from: myAddress });
+    }
 
     yield put(notificationModalSetState({
       isOpen: true,

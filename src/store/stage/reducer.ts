@@ -10,7 +10,7 @@ const initialState: StageState = {
   currentStageTokensSold: 0,
   currentStageTokensLimit: 0,
   nextStagePriceUsd: 0,
-
+  stages: [],
 };
 
 export default createReducer(initialState, STAGE_ACTIONS);

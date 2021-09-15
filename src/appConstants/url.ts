@@ -6,4 +6,5 @@ export default {
   },
   tokens: '/tokens/',
   stage: '/stage/',
+  stages: '/stages/',
 };

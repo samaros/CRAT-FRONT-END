@@ -8,5 +8,6 @@ export * from './validateStatuses';
 export * from './getWeb3';
 export * from './createContract';
 export * from './formatTokenAmount';
+export * from './numberFormatter';
 export { default as createReducer } from './createReducer';
 export { default as ErrorWithCode } from './ErrorWithCode';

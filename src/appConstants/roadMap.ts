@@ -17,7 +17,7 @@ export const roadMap = [
   {
     quarter: 'Q2',
     year: '2022',
-    body: 'Community Exchange Platform Development',
+    body: 'Community Exchange Platform Development, CRAT wallet Development',
   },
   {
     quarter: 'Q3',

@@ -1,4 +1,4 @@
-export type StageType = {
+export type CurrentStageType = {
   status: string,
   currentStagePriceUsd: number,
   currentStageNumber: number,
@@ -8,4 +8,12 @@ export type StageType = {
   nextStagePriceUsd: number,
 };
 
-export type StageState = StageType;
+export type StageType = {
+  status: string,
+  price: number,
+  tokensLimit: string,
+};
+
+export type StageState = CurrentStageType & {
+  stages: StageType[],
+};

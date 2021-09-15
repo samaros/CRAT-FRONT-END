@@ -1,39 +1,44 @@
 import React, { useMemo } from 'react';
 import { Carousel } from 'components';
 import { Text } from 'components/Typography';
-import { presalePlan } from 'appConstants';
-import styles from './styles.module.scss';
+import stageSelector from 'store/stage/selectors';
+import { useShallowSelector } from 'hooks';
+import { StageState, State } from 'types';
 import { PresaleSlide } from './components';
+import styles from './styles.module.scss';
 
 const PresalePlan = () => {
-  const slides = useMemo(() => presalePlan.map((element) => {
+  const { stages } = useShallowSelector<State, StageState>(stageSelector.getStage);
+  const slides = useMemo(() => stages.map((element) => {
     const {
-      title, price, amount, status,
+      status, price, tokensLimit,
     } = element;
 
     return (
       <PresaleSlide
         className={styles.slide}
-        key={title}
-        title={title}
+        key={status}
+        title=""
         price={price}
-        amount={amount}
+        tokenLimit={tokensLimit}
         status={status}
       />
     );
-  }), [presalePlan]);
+  }), [stages]);
 
   return (
     <div className={styles.container}>
       <div className={styles.fadeLeft} />
       <Text className={styles.title} align="center" size="xxl">PRESALE PLAN</Text>
-      <Carousel
-        classNameProp={styles.carousel}
-        classNameArrowLeft={styles.arrowLeft}
-        classNameArrowRight={styles.arrowRight}
-      >
-        {slides}
-      </Carousel>
+      {stages.length ? (
+        <Carousel
+          classNameProp={styles.carousel}
+          classNameArrowLeft={styles.arrowLeft}
+          classNameArrowRight={styles.arrowRight}
+        >
+          {slides}
+        </Carousel>
+      ) : null}
       <div className={styles.fadeRight} />
     </div>
   );

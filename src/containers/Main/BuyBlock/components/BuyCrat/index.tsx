@@ -101,6 +101,7 @@ const BuyCrat: FC<Props> = ({
         <Text>YOUR CRAT BALANCE</Text>
         <Text color="green">{`${getTokenAmountDisplay(balance.toString(), 8)} CRAT`}</Text>
       </div>
+      <Text size="xxs">Please note that rates are changing constantly and the amount you will finally get can slightly differ from this</Text>
       <div className={styles.inputMask}>
         <Input
           value={spendAmount}

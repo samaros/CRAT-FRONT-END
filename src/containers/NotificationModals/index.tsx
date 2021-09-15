@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import cx from 'classnames';
-import { Modal, Text, Button } from 'components';
+import { Modal, Text } from 'components';
 import { NotificationModalObjectHelper } from 'types';
 import { Pending, Reject, Success } from 'assets/img';
 import styles from './styles.module.scss';
@@ -89,11 +89,11 @@ const NotificationModal: FC<Props> = ({
       <Text className={styles.instructions}>
         {helperObj?.body3}
       </Text>
-      {result === 'reject' && (
+      {/* {result === 'reject' && (
         <Button color="green" className={styles.againBtn}>
           <Text size="l" weight="bold" color="white">{`${type} again`}</Text>
         </Button>
-      )}
+      )} */}
     </Modal>
   );
 };

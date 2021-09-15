@@ -60,6 +60,7 @@ const Main = () => {
         buyBlockRef={buyBlockRef}
         tokens={data}
         cratBalance={cratBalance}
+        toggleModal={toggleModal}
       />
       <RoadMap />
       <WhitelistModal

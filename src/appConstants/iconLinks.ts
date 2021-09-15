@@ -11,7 +11,7 @@ export const iconLinks: IconLinkType[] = [
   },
   {
     icon: 'discord',
-    link: 'https://www.netflix.com/browse',
+    link: 'https://discord.gg/vsAuKGMfJ3',
     adjustLeft: true,
   },
   {
@@ -23,7 +23,7 @@ export const iconLinks: IconLinkType[] = [
     link: 'https://t.me/joinchat/vcgwPoaiXy84ZDlk',
   },
   {
-    icon: 'telegram',
-    link: 'https://www.netflix.com/browse',
+    icon: 'linkedin',
+    link: 'https://www.linkedin.com/in/cratd2c-tokenomics-233438220/',
   },
 ];

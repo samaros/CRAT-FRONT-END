@@ -5,11 +5,9 @@ import { Provider, State, WalletState } from 'types';
 import walletSelector from 'store/wallet/selectors';
 import { Links } from 'containers';
 import cx from 'classnames';
-import { disconnectWallet } from 'store/wallet/actions';
-import { useDispatch } from 'react-redux';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { MetamaskRequestMethod } from 'appConstants';
-import { ConnectButton, MobileMenu } from './components';
+import { ConnectButton, DisconnectModal, MobileMenu } from './components';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -17,18 +15,16 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ toggleModal }) => {
-  const dispatch = useDispatch();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(!isMenuOpen);
-  }, [isMenuOpen]);
+  const toggleMenu = useCallback(() => setIsMenuOpen(!isMenuOpen), [isMenuOpen]);
+
+  const [isDisconnectModalOpen, setDisconnectModalOpen] = useState(false);
+  const toggleDisconnectModal = useCallback(
+    () => setDisconnectModalOpen(!isDisconnectModalOpen),
+    [isDisconnectModalOpen],
+  );
 
   const { status, address } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
-
-  const handleDisconnect = useCallback(() => {
-    dispatch(disconnectWallet());
-  }, []);
 
   const handleConnect = async () => {
     const provider: Provider = await detectEthereumProvider();
@@ -47,7 +43,7 @@ const Header: FC<Props> = ({ toggleModal }) => {
       <ConnectButton
         className={styles.connectBtn}
         connectAction={handleConnect}
-        disconnectAction={handleDisconnect}
+        disconnect={toggleDisconnectModal}
       />
       <MobileMenu
         className={cx(styles.mobileMenu, { [styles.mobileMenuOpen]: isMenuOpen })}
@@ -56,7 +52,11 @@ const Header: FC<Props> = ({ toggleModal }) => {
         toggleMenu={toggleMenu}
         toggleModal={toggleModal}
         connectAction={handleConnect}
-        disconnectAction={handleDisconnect}
+        disconnect={toggleDisconnectModal}
+      />
+      <DisconnectModal
+        isOpen={isDisconnectModalOpen}
+        onClose={toggleDisconnectModal}
       />
     </header>
   );

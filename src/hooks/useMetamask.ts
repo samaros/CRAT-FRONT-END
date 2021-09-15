@@ -41,7 +41,7 @@ const useMetamask = (isSkip?: boolean): void => {
             setNotification({
               type: 'success',
               title: 'Success',
-              message: 'Account changed',
+              message: 'Wallet connected',
             });
           } else {
             dispatch(disconnectWallet({

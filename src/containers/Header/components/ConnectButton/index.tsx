@@ -14,11 +14,11 @@ type Props = {
   color?: 'default' | 'yellow',
   className?: string,
   connectAction: () => void,
-  disconnectAction: () => void,
+  disconnect: () => void,
 };
 
 const ConnectButton: FC<Props> = ({
-  className, color = 'default', connectAction, disconnectAction,
+  className, color = 'default', connectAction, disconnect,
 }) => {
   const { address, status } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
@@ -53,7 +53,7 @@ const ConnectButton: FC<Props> = ({
         <ConnectDropdownMenu
           isAbsolute
           address={address || ''}
-          disconnectAction={disconnectAction}
+          disconnect={disconnect}
         />
       )}
     </div>

@@ -5,14 +5,12 @@ import { CartAndItemsPng, RocketPng } from 'assets/img';
 import { Button } from 'components';
 import cx from 'classnames';
 import { useScroll } from 'hooks';
-// import ApprovePendingModal from 'containers/NotificationModals';
 import styles from './styles.module.scss';
 import { CoinPercent, MaxSupply } from './components';
 
 type Props = {
   scrollToBuy: () => void,
 };
-
 const Banner: FC<Props> = ({ scrollToBuy }) => {
   const { scrollY } = useScroll();
   return (
@@ -35,17 +33,27 @@ const Banner: FC<Props> = ({ scrollToBuy }) => {
             </Button>
           </div>
           <div className={styles.imageBlock}>
-            <img style={{ transform: `translateY(${scrollY / 7}px)` }} className={styles.cart} src={CartAndItemsPng} alt="" />
+            <img
+              style={{ transform: `translateY(${scrollY / 7}px)` }}
+              className={styles.cart}
+              src={CartAndItemsPng}
+              alt=""
+            />
           </div>
         </div>
       </div>
       <div className={styles.bottomBlock}>
-        <img style={{ transform: `translate(${scrollY / 10}px, -${scrollY / 10}px)` }} src={RocketPng} alt="" className={styles.rocket} />
+        <img
+          style={{ transform: `${scrollY < 1000 ? `translate(${scrollY / 10}px, -${scrollY / 10}px)` : 'none'}` }}
+          src={RocketPng}
+          alt=""
+          className={styles.rocket}
+        />
         <div className={styles.cards}>
-          <div style={{ transform: `translateX(${scrollY / 30}px)` }}>
+          <div style={{ transform: `${scrollY < 1000 ? `translateX(${scrollY / 30}px)` : 'none'}` }}>
             <MaxSupply className={styles.maxSupply} />
           </div>
-          <div style={{ transform: `translateX(-${scrollY / 30}px)` }}>
+          <div style={{ transform: `${scrollY < 1000 ? `translateX(-${scrollY / 30}px)` : 'none'}` }}>
             <CoinPercent />
           </div>
         </div>

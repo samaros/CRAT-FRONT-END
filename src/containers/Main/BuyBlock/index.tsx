@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {
   FC, RefObject, useCallback, useEffect, useState,
 } from 'react';
@@ -20,10 +19,11 @@ type Props = {
   buyBlockRef: RefObject<HTMLDivElement>,
   tokens: Token[],
   cratBalance: number,
+  toggleModal: () => void,
 };
 
 const BuyBlock: FC<Props> = ({
-  buyBlockRef, tokens, cratBalance,
+  buyBlockRef, tokens, cratBalance, toggleModal,
 }) => {
   const {
     status,
@@ -84,6 +84,7 @@ const BuyBlock: FC<Props> = ({
               className={styles.buyBtn}
               size="big"
               color="white"
+              onClick={toggleModal}
             >
               <Text size="l" align="center" color="green">WHITELIST</Text>
             </Button>

@@ -16,6 +16,7 @@ export type WhitelistPayload = CheckIsWhitelistedPayload & {
 };
 
 export type SignBuyPayload = {
-  tokenAddress: string,
-  amountToPay: string,
+  address: string,
+  amount: string,
+  decimals: string
 };

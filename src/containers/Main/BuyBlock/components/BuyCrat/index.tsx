@@ -64,8 +64,9 @@ const BuyCrat: FC<Props> = ({
     const { address, price, decimals } = selectedBuyToken.value;
     if (address === bnbMaskAddress) {
       dispatch(signBuy({
-        amountToPay: spendAmount,
-        tokenAddress: address,
+        amount: spendAmount,
+        address,
+        decimals,
       }));
     } else {
       dispatch(approveTokensSpend({

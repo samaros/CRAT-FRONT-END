@@ -13,7 +13,7 @@ import { notificationModalSetState } from 'store/notificationModal/actions';
 import { getTokenAmount, createContract } from 'utils';
 
 export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
-  const { tokenAddress, amountToPay } = payload;
+  const { address, amount, decimals } = payload;
   try {
     yield put(apiActions.request(type));
 
@@ -31,8 +31,8 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
       method: 'post',
       url: URL.wallet.signBuy,
       data: {
-        token_address: tokenAddress,
-        amount_to_pay: getTokenAmount(amountToPay),
+        token_address: address,
+        amount_to_pay: getTokenAmount(amount, +decimals),
       },
     });
 

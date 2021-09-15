@@ -50,8 +50,9 @@ function* saga({ type, payload }: ReturnType<typeof approveTokensSpend>) {
     yield call(signAndBuy, {
       type: actionTypes.WALLETS_SIGN_BUY,
       payload: {
-        tokenAddress: address,
-        amountToPay: amount,
+        address,
+        amount,
+        decimals,
       },
     });
 

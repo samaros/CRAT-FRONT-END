@@ -11,14 +11,14 @@ const PresalePlan = () => {
   const { stages } = useShallowSelector<State, StageState>(stageSelector.getStage);
   const slides = useMemo(() => stages.map((element) => {
     const {
-      status, price, tokensLimit,
+      status, price, tokensLimit, name,
     } = element;
 
     return (
       <PresaleSlide
         className={styles.slide}
         key={status}
-        title=""
+        title={name}
         price={price}
         tokenLimit={tokensLimit}
         status={status}

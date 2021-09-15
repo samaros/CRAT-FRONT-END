@@ -10,6 +10,7 @@ export type CurrentStageType = {
 
 export type StageType = {
   status: string,
+  name: string,
   price: number,
   tokensLimit: string,
 };

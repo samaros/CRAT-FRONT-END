@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useCallback, useState } from 'react';
 import { Text } from 'components/Typography';
@@ -40,7 +41,11 @@ const BuyCrat: FC<Props> = ({
     type,
   } = useShallowSelector<State, NotificationModalState>(notificationModalSelector.getModalInfo);
 
-  const { currentStagePriceUsd } = useShallowSelector<State, StageState>(stageSelector.getStage);
+  const {
+    currentStagePriceUsd,
+    currentStageTokensLimit,
+    currentStageTokensSold,
+  } = useShallowSelector<State, StageState>(stageSelector.getStage);
 
   const closeModal = useCallback(() => {
     dispatch(notificationModalSetState({
@@ -52,7 +57,17 @@ const BuyCrat: FC<Props> = ({
 
   const [spendAmount, setSpendAmount] = useState('');
 
+  const receiveAmount = () => {
+    if (Object.keys(selectedBuyToken)) {
+      return (+spendAmount * +selectedBuyToken?.value?.price) / currentStagePriceUsd;
+    }
+
+    return +spendAmount;
+  };
+
+  const isBuyCratOverflow = (currentStageTokensSold + +receiveAmount()) > currentStageTokensLimit;
   const isButtonActive = !!+spendAmount;
+
   const handleSpendAmountChange = useCallback((event) => {
     const { value } = event.target;
     if(validateOnlyNumbers(value)) {
@@ -77,13 +92,6 @@ const BuyCrat: FC<Props> = ({
       }));
     }
   }, [selectedBuyToken, spendAmount]);
-  const receiveAmount = () => {
-    if (Object.keys(selectedBuyToken)) {
-      return (+spendAmount * +selectedBuyToken?.value?.price) / currentStagePriceUsd;
-    }
-
-    return +spendAmount;
-  };
 
   return (
     <Card className={cx(styles.container, className)}>
@@ -129,7 +137,7 @@ const BuyCrat: FC<Props> = ({
       <Button
         color="green"
         className={styles.buyBtn}
-        disabled={!isWhitelisted || !isButtonActive}
+        disabled={isBuyCratOverflow || !isButtonActive || !isWhitelisted}
         onClick={approveOrBuy}
       >
         <Text size="l" weight="medium" color="white">BUY</Text>

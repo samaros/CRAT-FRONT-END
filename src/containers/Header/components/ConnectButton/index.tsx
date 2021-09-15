@@ -41,7 +41,7 @@ const ConnectButton: FC<Props> = ({
   return(
     <div className={styles.container}>
       <OutsideClickHandler onOutsideClick={
-          () => setIsConnectDropdownMenuVisible(!isConnectDropdownMenuVisible)
+          () => setIsConnectDropdownMenuVisible(false)
         }
       >
         <Button

@@ -35,10 +35,10 @@ const Main = () => {
   }, [isModalOpen]);
 
   useEffect(() => {
+    dispatch(getStage());
     if (address) {
       dispatch(checkIsWhitelisted({ address }));
       dispatch(getTokens());
-      dispatch(getStage());
       dispatch(getCratBalance());
     }
   }, [address]);

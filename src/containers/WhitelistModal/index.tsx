@@ -4,7 +4,6 @@ import {
 } from 'components';
 import {
   Formik,
-  FormikHelpers,
   Form,
   Field,
   FieldProps,
@@ -53,10 +52,9 @@ const WhitelistModal: FC<Props> = ({ isOpen, onClose }) => {
         validationSchema={validationSchema}
         onSubmit={(
           values: FormValues,
-          { setSubmitting }: FormikHelpers<FormValues>,
         ) => {
           handleWhitelist(values);
-          setSubmitting(false);
+          onClose();
         }}
       >
         {({

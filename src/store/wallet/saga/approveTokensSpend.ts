@@ -32,7 +32,6 @@ function* saga({ type, payload }: ReturnType<typeof approveTokensSpend>) {
       myAddress,
       crowdsaleContractAddress,
     ).call, { from: myAddress });
-    console.log(allowance, getTokenAmount(amount, decimals), 123123123);
 
     if (allowance < getTokenAmount(amount, decimals)) {
       yield call(cratToken.methods.approve(

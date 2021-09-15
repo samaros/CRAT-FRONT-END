@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Button } from 'components';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { Text } from 'components/Typography';
 import cx from 'classnames';
 import { useShallowSelector } from 'hooks';
@@ -39,23 +40,29 @@ const ConnectButton: FC<Props> = ({
   const connectBtnHandler = isConnected ? toggleConnectDropdownMenu : connectAction;
   return(
     <div className={styles.container}>
-      <Button
-        color="transparentWhite"
-        onClick={connectBtnHandler}
-        disabled={isDesktopSize}
-        className={cx(className, styles[color])}
+      <OutsideClickHandler onOutsideClick={
+          () => setIsConnectDropdownMenuVisible(!isConnectDropdownMenuVisible)
+        }
       >
-        <Text className={styles.text} size="xs">{buttonText}</Text>
-        {isConnected &&
+        <Button
+          color="transparentWhite"
+          onClick={connectBtnHandler}
+          disabled={isDesktopSize}
+          className={cx(className, styles[color])}
+        >
+          <Text className={styles.text} size="xs">{buttonText}</Text>
+          {isConnected &&
           (<div className={cx(styles.arrow, { [styles.isDown]: isConnectDropdownMenuVisible })} />)}
-      </Button>
-      {(isConnectDropdownMenuVisible && status === 'CONNECTED') && (
+        </Button>
+        {(isConnectDropdownMenuVisible && status === 'CONNECTED') && (
+        // eslint-disable-next-line max-len
         <ConnectDropdownMenu
           isAbsolute
           address={address || ''}
           disconnect={disconnect}
         />
-      )}
+        )}
+      </OutsideClickHandler>
     </div>
   );
 };

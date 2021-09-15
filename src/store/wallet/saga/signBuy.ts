@@ -47,6 +47,18 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
     } = response;
 
     const sendValue = token_address === bnbMaskAddress ? amount_to_pay : 0;
+    const gasBurn = 0;
+
+    if (sendValue) {
+      gasBurn = yield call(crowdsaleContract.methods.buy(
+        token_address,
+        amount_to_pay,
+        amount_to_receive,
+        signature_expiration_timestamp,
+        signature,
+      ).estimateGas, { from: myAddress, value: sendValue });
+      console.log(gasBurn, 'GAS PRICE');
+    }
 
     yield call(crowdsaleContract.methods.buy(
       token_address,
@@ -54,7 +66,7 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
       amount_to_receive,
       signature_expiration_timestamp,
       signature,
-    ).send, { from: myAddress, value: sendValue });
+    ).send, { from: myAddress, value: sendValue, gas: gasBurn });
 
     yield put(notificationModalSetState({
       isOpen: true,

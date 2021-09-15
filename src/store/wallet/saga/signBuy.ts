@@ -47,7 +47,7 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
     } = response;
 
     const sendValue = token_address === bnbMaskAddress ? amount_to_pay : 0;
-    const gasBurn = 0;
+    let gasBurn = 0;
 
     if (sendValue) {
       gasBurn = yield call(crowdsaleContract.methods.buy(

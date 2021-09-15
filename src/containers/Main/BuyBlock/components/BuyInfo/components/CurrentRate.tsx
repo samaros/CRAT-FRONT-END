@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import cx from 'classnames';
 import { Card } from 'components';
 import { Text } from 'components/Typography';
-import { CryptoAssetsType } from 'types';
+import { Token } from 'types';
 import styles from './styles.module.scss';
 import CryptoAssets from '../../CryptoAssets';
 
 type Props = {
   className?: string
-  data: CryptoAssetsType[],
+  data: Token[],
 };
 
 const CurrentRate: FC<Props> = ({ className, data }) => (

@@ -24,6 +24,7 @@ export enum Values {
   twitter,
   image,
   discord,
+  linkedin,
 }
 
 export type IconName = keyof typeof Values;

@@ -1,29 +1,35 @@
 import { Burger, Logo } from 'components';
 import React, { useCallback, useState, FC } from 'react';
 import { useShallowSelector } from 'hooks';
-import { State, Web3State } from 'types';
-import web3Selector from 'store/web3/selectors';
-import { Links, WhitelistModal } from 'containers';
+import { Provider, State, WalletState } from 'types';
+import walletSelector from 'store/wallet/selectors';
+import { Links } from 'containers';
 import cx from 'classnames';
+import detectEthereumProvider from '@metamask/detect-provider';
+import { MetamaskRequestMethod } from 'appConstants';
+import { ConnectButton, DisconnectModal, MobileMenu } from './components';
 import styles from './styles.module.scss';
-import { ConnectButton, MobileMenu } from './components';
 
 type Props = {
+  toggleModal: () => void,
 };
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = ({ toggleModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(!isMenuOpen);
-  }, [isMenuOpen]);
+  const toggleMenu = useCallback(() => setIsMenuOpen(!isMenuOpen), [isMenuOpen]);
 
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDisconnectModalOpen, setDisconnectModalOpen] = useState(false);
+  const toggleDisconnectModal = useCallback(
+    () => setDisconnectModalOpen(!isDisconnectModalOpen),
+    [isDisconnectModalOpen],
+  );
 
-  const toggleModal = useCallback(() => {
-    setModalOpen(!isModalOpen);
-  }, [isModalOpen]);
+  const { status, address } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
-  const { status, address } = useShallowSelector<State, Web3State>(web3Selector.getWeb3());
+  const handleConnect = async () => {
+    const provider: Provider = await detectEthereumProvider();
+    provider.request({ method: MetamaskRequestMethod.eth_requestAccounts });
+  };
 
   return (
     <header className={styles.container}>
@@ -34,19 +40,23 @@ const Header: FC<Props> = () => {
       />
       <Logo className={styles.logo} />
       <Links className={styles.links} whitelistHandler={toggleModal} />
-      <ConnectButton className={styles.connectBtn} />
-      {/* {isMenuOpen && ( */}
+      <ConnectButton
+        className={styles.connectBtn}
+        connectAction={handleConnect}
+        disconnect={toggleDisconnectModal}
+      />
       <MobileMenu
         className={cx(styles.mobileMenu, { [styles.mobileMenuOpen]: isMenuOpen })}
         isConnected={status === 'CONNECTED'}
         address={address || ''}
         toggleMenu={toggleMenu}
         toggleModal={toggleModal}
+        connectAction={handleConnect}
+        disconnect={toggleDisconnectModal}
       />
-      {/* )} */}
-      <WhitelistModal
-        isOpen={isModalOpen}
-        onClose={toggleModal}
+      <DisconnectModal
+        isOpen={isDisconnectModalOpen}
+        onClose={toggleDisconnectModal}
       />
     </header>
   );

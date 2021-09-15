@@ -43,36 +43,34 @@ div[id="root"] {
   scroll-behavior: smooth;
 
   // toastify styles
+  .Toastify__toast-container {
+    width: 250px;
+  }
   .Toastify__toast {
-    padding: 15px;
-    min-height: auto;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 4px;
-    box-shadow: none;
-
+    display: flex;
+    // box-shadow: 0px 4px 30px rgba(38, 150, 83, 0.4);
+    border-radius: 30px;
+    width: 100%;
+    height: 60px; 
     &--success {
-      background-color: $color-green;
-      border: 1px solid $color-green;
-      // color: $color-text-success;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #269653;
     }
 
     &--error {
-      background-color: $color-red;
-      border: 1px solid $color-red;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #269653;
     }
 
     &--info {
-      background-color: $color-yellow;
-      border: 1px solid $color-yellow;
     }
   }
 
   .Toastify__close-button {
     align-self: center;
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
     color: $color-green;
+    background: $color-white;
 
     & > svg {
       display: none;

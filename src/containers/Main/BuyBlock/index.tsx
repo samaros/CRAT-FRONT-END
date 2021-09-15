@@ -3,10 +3,13 @@ import React, {
 } from 'react';
 import { Text } from 'components/Typography';
 import { Button } from 'components';
-import { cryptoAssets } from 'appConstants';
-import { CryptoAssetsType, State, Web3State } from 'types';
-import web3Selector from 'store/web3/selectors';
+import {
+  StageState, State, Token, WalletState,
+} from 'types';
+import walletSelector from 'store/wallet/selectors';
+import stageSelector from 'store/stage/selectors';
 import { useShallowSelector } from 'hooks';
+import { cryptoAssetsIcons } from 'appConstants';
 import styles from './styles.module.scss';
 import {
   ImportantAddresses, CryptoAssets, BuyCrat, BuyInfo,
@@ -14,31 +17,50 @@ import {
 
 type Props = {
   buyBlockRef: RefObject<HTMLDivElement>,
+  tokens: Token[],
+  cratBalance: number,
+  toggleModal: () => void,
 };
 
-const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
-  const { status, whitelisted } = useShallowSelector<State, Web3State>(web3Selector.getWeb3());
+const BuyBlock: FC<Props> = ({
+  buyBlockRef, tokens, cratBalance, toggleModal,
+}) => {
+  const {
+    status,
+    isWhitelisted,
+  } = useShallowSelector<State, WalletState>(walletSelector.getWallet);
 
-  const [selectedBuyToken, setSelectedBuyToken] = useState<CryptoAssetsType>({
-    icon: '',
-    label: '',
-    value: '',
-    rate: '',
-  });
+  const stage = useShallowSelector<State, StageState>(stageSelector.getStage);
+
+  const [selectedBuyToken, setSelectedBuyToken] = useState({});
 
   const handleSelectChange = useCallback((value) => {
     setSelectedBuyToken(value);
   }, [selectedBuyToken]);
 
+  const modifyTokenData = tokens.map(({
+    address, symbol, decimals, price,
+  }) => ({
+    icon: cryptoAssetsIcons[symbol.toLocaleLowerCase()],
+    value: {
+      address,
+      decimals,
+      price,
+    },
+    label: symbol,
+  }));
+
   useEffect(() => {
-    setSelectedBuyToken(cryptoAssets[0]);
-  }, []);
+    if (tokens.length) {
+      setSelectedBuyToken(modifyTokenData[0]);
+    }
+  }, [tokens]);
   return (
     <div className={styles.container}>
       <div className={styles.buyContainer}>
         <Text align="center" size="xxl" color="white">BUY NOW WITH</Text>
         <CryptoAssets
-          data={cryptoAssets}
+          data={tokens}
           className={styles.cryptoAssets}
         />
         {status !== 'CONNECTED' && (
@@ -54,7 +76,7 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
             </Button>
           </>
         )}
-        {(status === 'CONNECTED' && !whitelisted) && (
+        {(status === 'CONNECTED' && !isWhitelisted) && (
           <div className={styles.whitelistBlock}>
             <Text weight="medium" align="center">You are NOT whitelisted for PreSale events!</Text>
             <Text weight="medium" align="center">Whitelist now:</Text>
@@ -62,35 +84,37 @@ const BuyBlock: FC<Props> = ({ buyBlockRef }) => {
               className={styles.buyBtn}
               size="big"
               color="white"
+              onClick={toggleModal}
             >
               <Text size="l" align="center" color="green">WHITELIST</Text>
             </Button>
           </div>
-
         )}
       </div>
       {(status === 'CONNECTED') && (
         <div className={styles.buyLogicContainer}>
           <BuyInfo
-            stage={1}
-            daysLeft={10}
-            progressMax={500000}
-            progressCur={197382}
-            price={0.1}
-            nextStagePrice={0.15}
+            stage={stage.currentStageNumber}
+            daysLeft={stage.currentStageDaysLeft}
+            progressMax={stage.currentStageTokensLimit}
+            progressCur={stage.currentStageTokensSold}
+            price={stage.currentStagePriceUsd}
+            nextStagePrice={stage.nextStagePriceUsd}
             className={styles.buyInfo}
+            tokens={tokens}
           />
           <div style={{ width: '100%' }} ref={buyBlockRef}>
             <BuyCrat
-              balance={909090}
-              tokenData={cryptoAssets}
+              balance={cratBalance}
+              tokenData={modifyTokenData}
               selectedBuyToken={selectedBuyToken}
               selectHandler={handleSelectChange}
               className={styles.buyLogic}
+              isWhitelisted={isWhitelisted}
             />
           </div>
         </div>
-      ) }
+      )}
       {status !== 'CONNECTED' && <ImportantAddresses />}
     </div>
   );

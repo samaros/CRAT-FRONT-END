@@ -1,15 +1,17 @@
 import { Links, IconLinks } from 'containers';
 import { Text } from 'components/Typography';
 import { RBLogo } from 'assets/img';
-import React from 'react';
+import React, { FC } from 'react';
 
 import styles from './styles.module.scss';
 
-// type Footer1Props = {};
+type Props = {
+  toggleModal: () => void,
+};
 
-const Footer = () => (
+const Footer: FC<Props> = ({ toggleModal }) => (
   <div className={styles.container}>
-    <Links className={styles.links} linkClassName={styles.link} whitelistHandler={() => {}} />
+    <Links className={styles.links} linkClassName={styles.link} whitelistHandler={toggleModal} />
     <div className={styles.centerBlock}>
       <div className={styles.iconWrapper}>
         <IconLinks iconClassName={styles.icon} />

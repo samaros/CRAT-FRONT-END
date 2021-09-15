@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { FC } from 'react';
 import { Text } from 'components/Typography';
 import { CartAndItemsPng, RocketPng } from 'assets/img';
@@ -10,11 +11,11 @@ import { CoinPercent, MaxSupply } from './components';
 type Props = {
   scrollToBuy: () => void,
 };
-
 const Banner: FC<Props> = ({ scrollToBuy }) => {
   const { scrollY } = useScroll();
   return (
     <>
+      {/* <ApprovePendingModal isOpen={false} onClose={() => alert('close')} type="approve" result="pending" /> */}
       <div className={cx(styles.container)}>
         <div className={styles.textAndImage}>
           <div className={styles.textBlock}>
@@ -32,17 +33,27 @@ const Banner: FC<Props> = ({ scrollToBuy }) => {
             </Button>
           </div>
           <div className={styles.imageBlock}>
-            <img style={{ transform: `translateY(${scrollY / 7}px)` }} className={styles.cart} src={CartAndItemsPng} alt="" />
+            <img
+              style={{ transform: `translateY(${scrollY / 7}px)` }}
+              className={styles.cart}
+              src={CartAndItemsPng}
+              alt=""
+            />
           </div>
         </div>
       </div>
       <div className={styles.bottomBlock}>
-        <img style={{ transform: `translate(${scrollY / 6}px, -${scrollY / 6}px)` }} src={RocketPng} alt="" className={styles.rocket} />
+        <img
+          style={{ transform: `${scrollY < 1000 ? `translate(${scrollY / 10}px, -${scrollY / 10}px)` : 'none'}` }}
+          src={RocketPng}
+          alt=""
+          className={styles.rocket}
+        />
         <div className={styles.cards}>
-          <div style={{ transform: `translateX(${scrollY / 30}px)` }}>
+          <div style={{ transform: `${scrollY < 1000 ? `translateX(${scrollY / 30}px)` : 'none'}` }}>
             <MaxSupply className={styles.maxSupply} />
           </div>
-          <div style={{ transform: `translateX(-${scrollY / 30}px)` }}>
+          <div style={{ transform: `${scrollY < 1000 ? `translateX(-${scrollY / 30}px)` : 'none'}` }}>
             <CoinPercent />
           </div>
         </div>

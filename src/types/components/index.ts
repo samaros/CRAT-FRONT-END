@@ -8,3 +8,4 @@ export * from './link';
 export * from './aboutComponent';
 export * from './presaleSlide';
 export * from './table';
+export * from './notificationModals';

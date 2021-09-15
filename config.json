@@ -7,6 +7,12 @@
   "ascent": 850,
   "glyphs": [
     {
+      "uid": "e9107949dd6c9e8ab2b29ae07156e38c",
+      "css": "linkedin",
+      "code": 61665,
+      "src": "fontawesome"
+    },
+    {
       "uid": "a0dd4fce998d2dae50cccd130b94b8b7",
       "css": "wallet",
       "code": 69398,

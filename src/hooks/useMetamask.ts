@@ -1,96 +1,88 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable consistent-return */
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import detectEthereumProvider from '@metamask/detect-provider';
 import {
-  MetamaskStatus, Web3Event, MetamaskRequestMethod, routes,
+  WalletStatus, Web3Event, MetamaskRequestMethod,
 } from 'appConstants';
-import { setWeb3ConnectAction, setWeb3ResetAction } from 'store/web3/actions';
-import { setNotification, history } from 'utils';
+import { connectMetamask, disconnectWallet } from 'store/wallet/actions';
+import { setNotification } from 'utils';
 import { Provider } from 'types';
 
-const useMetamask = (): void => {
+const useMetamask = (isSkip?: boolean): void => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function takeMetamask() {
       const provider: Provider = await detectEthereumProvider();
-
       if (!provider || !provider.isMetaMask) {
-        dispatch(setWeb3ConnectAction({
-          status: MetamaskStatus.NOT_AVAILABLE,
-          address: '',
-        }));
+        dispatch(disconnectWallet());
         setNotification({
           type: 'error',
           title: 'Error',
           message: 'Please install the MetaMask extension',
         });
-
-        // history.push(routes.auth.connect.root);
       }
 
-      if (provider !== null) {
+      if (provider) {
         const addresses: string[] = await provider.request({
           method: MetamaskRequestMethod.eth_accounts,
         });
 
         provider.on(Web3Event.accountsChanged, (addressesOtherAccount: string[]) => {
           if (addressesOtherAccount.length) {
-            dispatch(setWeb3ConnectAction({
-              status: MetamaskStatus.AVAILABLE,
-              address: addressesOtherAccount[0],
+            const address = addressesOtherAccount[0];
+            dispatch(connectMetamask({
+              status: WalletStatus.AVAILABLE,
+              address,
             }));
+
             setNotification({
               type: 'success',
               title: 'Success',
-              message: 'Account changed',
+              message: 'Wallet connected',
             });
-
-            history.push(routes.main.root);
           } else {
-            dispatch(setWeb3ConnectAction({
-              status: MetamaskStatus.AVAILABLE,
-              address: '',
+            dispatch(disconnectWallet({
+              status: WalletStatus.AVAILABLE,
             }));
             setNotification({
               type: 'error',
               title: 'Error',
               message: 'Account disabled',
             });
-
-            // history.push(routes.auth.connect.root);
           }
         });
 
         provider.on(Web3Event.disconnect, () => {
-          dispatch(setWeb3ResetAction());
+          dispatch(disconnectWallet());
           setNotification({
             type: 'error',
             title: 'Error',
             message: 'MetaMask was disconnected',
           });
-
-          // history.push(routes.auth.connect.root);
         });
 
         if (!addresses.length) {
-          dispatch(setWeb3ConnectAction({
-            status: MetamaskStatus.NOT_AVAILABLE,
-            address: '',
+          dispatch(disconnectWallet({
+            status: WalletStatus.NOT_AVAILABLE,
           }));
 
           return;
         }
 
-        dispatch(setWeb3ConnectAction({
-          status: MetamaskStatus.AVAILABLE,
+        dispatch(connectMetamask({
+          status: WalletStatus.AVAILABLE,
           address: addresses[0],
         }));
       }
+
+      return provider;
     }
 
-    takeMetamask();
-  }, []);
+    if (!isSkip) takeMetamask();
+  }, [isSkip]);
 };
 
 export default useMetamask;

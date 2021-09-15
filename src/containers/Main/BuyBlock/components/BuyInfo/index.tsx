@@ -1,7 +1,7 @@
-import { cryptoAssets } from 'appConstants';
 import { Carousel } from 'components';
 import React, { FC } from 'react';
 import cx from 'classnames';
+import { Token } from 'types';
 import { CurrentRates, CurrentPrice, CurrentStage } from './components';
 import styles from './styles.module.scss';
 
@@ -13,6 +13,7 @@ type Props = {
   progressCur: number,
   price: number,
   nextStagePrice: number,
+  tokens: Token[],
 };
 
 const BuyInfo: FC<Props> = ({
@@ -23,6 +24,7 @@ const BuyInfo: FC<Props> = ({
   progressCur,
   price,
   nextStagePrice,
+  tokens,
 }) => (
   <div className={cx(styles.container, className)}>
     <div className={styles.blockInfo}>
@@ -37,7 +39,7 @@ const BuyInfo: FC<Props> = ({
         nextStagePrice={nextStagePrice}
       />
       <CurrentRates
-        data={cryptoAssets}
+        data={tokens}
       />
     </div>
     <div className={styles.carouselInfo}>
@@ -56,7 +58,7 @@ const BuyInfo: FC<Props> = ({
           nextStagePrice={nextStagePrice}
         />
         <CurrentRates
-          data={cryptoAssets}
+          data={tokens}
         />
       </Carousel>
     </div>

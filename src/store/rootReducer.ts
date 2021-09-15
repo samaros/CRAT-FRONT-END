@@ -1,8 +1,14 @@
 import { connectRouter } from 'connected-react-router';
 import { history } from 'utils';
-import web3 from './web3/reducer';
+import wallet from './wallet/reducer';
+import tokens from './tokens/reducer';
+import stage from './stage/reducer';
+import notificationModal from './notificationModal/reducer';
 
 export default {
   router: connectRouter(history),
-  web3,
+  wallet,
+  tokens,
+  stage,
+  notificationModal,
 };

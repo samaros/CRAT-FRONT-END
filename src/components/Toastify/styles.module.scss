@@ -3,31 +3,10 @@
 
 .toastify {
   @include flexbox;
-  background: $color-white;
-
-  &.success {
-    border-color: $color-green;
-    .icon, .title {
-      color: $color-green;
-    }
-  }
-
-  &.error {
-    .icon, .title {
-      color: $color-white;
-    }
-  }
-
-  &.info {
-    .icon, .title {
-      color: $color-white;
-    }
-  }
 }
 
 .icon {
   margin-right: 25px;
-  font-size: 12px;
 }
 
 .title {

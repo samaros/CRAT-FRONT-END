@@ -1,4 +1,4 @@
-export enum MetamaskStatus {
+export enum WalletStatus {
   AVAILABLE = 'AVAILABLE',
   NOT_AVAILABLE = 'NOT_AVAILABLE',
   CONNECTED = 'CONNECTED',

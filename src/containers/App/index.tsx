@@ -1,8 +1,8 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useMetamask } from 'hooks';
-import Routes from '../Routes';
 import 'react-toastify/dist/ReactToastify.css';
+import Routes from '../Routes';
 
 const App = () => {
   useMetamask();
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Routes />
-      <ToastContainer hideProgressBar position="top-right" />
+      <ToastContainer autoClose={500000000} hideProgressBar position="top-right" />
     </>
   );
 };

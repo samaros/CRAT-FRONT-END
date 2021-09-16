@@ -11,10 +11,13 @@ type Props = {
   address: string,
   isAbsolute?: boolean,
   disconnect: () => void,
+  className?: string,
 };
 
-const ConnectDropdownMenu: FC<Props> = ({ address, isAbsolute = false, disconnect }) => (
-  <Card className={cx(styles.container, { [styles.absolute]: isAbsolute })}>
+const ConnectDropdownMenu: FC<Props> = ({
+  address, isAbsolute = false, disconnect, className,
+}) => (
+  <Card className={cx(styles.container, { [styles.absolute]: isAbsolute }, className)}>
     <Text tag="p" weight="bold" color="green">ACCOUNT</Text>
     <Text tag="p" color="black" size="xs">CONNECTED WITH METAMASK</Text>
     <Copyable withIcon valueToCopy={address} classNameIcon={styles.icon}>

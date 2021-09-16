@@ -31,7 +31,7 @@
 }
 
 @include forDesktopSm {
-  .arrow {
+  .arrow, .dropdownMenu {
     display: none;
   }
   .container .text {

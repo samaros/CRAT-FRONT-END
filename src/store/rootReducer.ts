@@ -4,6 +4,7 @@ import wallet from './wallet/reducer';
 import tokens from './tokens/reducer';
 import stage from './stage/reducer';
 import notificationModal from './notificationModal/reducer';
+import ui from './ui/reducer';
 
 export default {
   router: connectRouter(history),
@@ -11,4 +12,5 @@ export default {
   tokens,
   stage,
   notificationModal,
+  ui,
 };

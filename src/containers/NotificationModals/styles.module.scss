@@ -34,6 +34,10 @@
   text-transform: uppercase;
 }
 
+.scannerBtn {
+  margin: 0 auto;
+}
+
 .pending {
   @include rotateAnimation;
 }

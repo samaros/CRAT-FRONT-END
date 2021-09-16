@@ -57,10 +57,9 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
         signature_expiration_timestamp,
         signature,
       ).estimateGas, { from: myAddress, value: sendValue });
-      console.log(gasBurn, 'GAS PRICE');
     }
 
-    yield call(crowdsaleContract.methods.buy(
+    const txReceipt = yield call(crowdsaleContract.methods.buy(
       token_address,
       amount_to_pay,
       amount_to_receive,
@@ -68,10 +67,13 @@ export function* signAndBuy({ type, payload }: ReturnType<typeof signBuy>) {
       signature,
     ).send, { from: myAddress, value: sendValue, gas: gasBurn });
 
+    const { transactionHash } = txReceipt;
+
     yield put(notificationModalSetState({
       isOpen: true,
       type: 'send',
       result: 'success',
+      transactionHash,
     }));
     yield put(apiActions.success(type));
   } catch (err) {

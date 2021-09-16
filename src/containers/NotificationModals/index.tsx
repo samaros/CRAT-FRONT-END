@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC } from 'react';
 import cx from 'classnames';
-import { Modal, Text } from 'components';
+import {
+  Link, Modal, Text, Button,
+} from 'components';
 import { NotificationModalObjectHelper } from 'types';
 import { Pending, Reject, Success } from 'assets/img';
 import styles from './styles.module.scss';
@@ -62,10 +65,11 @@ type Props = {
   onClose: () => void,
   type: string,
   result: string,
+  transactionHash: string,
 };
 
 const NotificationModal: FC<Props> = ({
-  className, isOpen, onClose, type, result,
+  className, isOpen, onClose, type, result, transactionHash,
 }) => {
   const helperObj = modalHelperObject[type][result];
   return (
@@ -89,6 +93,11 @@ const NotificationModal: FC<Props> = ({
       <Text className={styles.instructions}>
         {helperObj?.body3}
       </Text>
+      {result === 'success' && (
+        <Button className={styles.scannerBtn} color="green">
+          <Link external name="See on scanner" link={`https://testnet.bscscan.com/tx/${transactionHash}`} />
+        </Button>
+      )}
       {/* {result === 'reject' && (
         <Button color="green" className={styles.againBtn}>
           <Text size="l" weight="bold" color="white">{`${type} again`}</Text>

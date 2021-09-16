@@ -39,6 +39,7 @@ const BuyCrat: FC<Props> = ({
     isOpen,
     result,
     type,
+    transactionHash,
   } = useShallowSelector<State, NotificationModalState>(notificationModalSelector.getModalInfo);
 
   const {
@@ -52,6 +53,7 @@ const BuyCrat: FC<Props> = ({
       isOpen: false,
       result: '',
       type: '',
+      transactionHash: '',
     }));
   }, []);
 
@@ -150,6 +152,7 @@ const BuyCrat: FC<Props> = ({
           type={type}
           result={result}
           onClose={closeModal}
+          transactionHash={transactionHash || ''}
         />
       )}
     </Card>

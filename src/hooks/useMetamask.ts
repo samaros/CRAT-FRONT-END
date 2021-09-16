@@ -40,7 +40,6 @@ const useMetamask = (isSkip?: boolean): void => {
             message: 'Change to BSC testnet',
           });
         } else {
-          console.log('CONNECT');
           dispatch(connectMetamask({
             status: WalletStatus.AVAILABLE,
             address: addresses[0],

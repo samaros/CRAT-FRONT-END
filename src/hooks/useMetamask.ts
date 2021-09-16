@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import detectEthereumProvider from '@metamask/detect-provider';
 import {
-  WalletStatus, Web3Event, MetamaskRequestMethod,
+  WalletStatus, Web3Event, MetamaskRequestMethod, chainId as bscChainId,
 } from 'appConstants';
 import { connectMetamask, disconnectWallet } from 'store/wallet/actions';
 import { setNotification } from 'utils';
@@ -30,6 +30,18 @@ const useMetamask = (isSkip?: boolean): void => {
           method: MetamaskRequestMethod.eth_accounts,
         });
 
+        const chainId: string[] = await provider.request({
+          method: MetamaskRequestMethod.eth_chainId,
+        });
+
+        if (chainId[0] !== bscChainId) {
+          setNotification({
+            type: 'error',
+            title: 'Error',
+            message: 'Change to BSC testnet',
+          });
+        }
+
         provider.on(Web3Event.accountsChanged, (addressesOtherAccount: string[]) => {
           if (addressesOtherAccount.length) {
             const address = addressesOtherAccount[0];
@@ -51,6 +63,16 @@ const useMetamask = (isSkip?: boolean): void => {
               type: 'error',
               title: 'Error',
               message: 'Account disabled',
+            });
+          }
+        });
+
+        provider.on(Web3Event.chainChanged, (chainIdLocal: string) => {
+          if (chainIdLocal !== bscChainId) {
+            setNotification({
+              type: 'error',
+              title: 'Error',
+              message: 'Change to BSC testnet',
             });
           }
         });

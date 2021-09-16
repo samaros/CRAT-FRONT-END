@@ -7,12 +7,14 @@ export enum WalletStatus {
 export enum MetamaskRequestMethod {
   eth_requestAccounts = 'eth_requestAccounts',
   eth_accounts = 'eth_accounts',
+  eth_chainId = 'eth_chainId',
 }
 
 export enum Web3Event {
   disconnect = 'disconnect',
   connect = 'connect',
   accountsChanged = 'accountsChanged',
+  chainChanged = 'chainChanged',
 }
 
 export enum PrivateRouteClientCheck {

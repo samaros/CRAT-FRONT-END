@@ -57,7 +57,7 @@ div[id="root"] {
     }
 
     &--error {
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #269653;
+      background: $color-orange;
     }
 
     &--info {
@@ -80,6 +80,14 @@ div[id="root"] {
     &:after {
       content: '\e80a';
       font-family: 'Fontello', Arial, Helvetica, sans-serif;
+    }
+
+    &--success {
+      color: $color-green;
+    }
+
+    &--error {
+      color: $color-orange;
     }
   }
 

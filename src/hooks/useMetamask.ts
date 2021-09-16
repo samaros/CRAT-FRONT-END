@@ -30,11 +30,10 @@ const useMetamask = (isSkip?: boolean): void => {
           method: MetamaskRequestMethod.eth_accounts,
         });
 
-        const chainId: string[] = await provider.request({
+        const chainId: string = await provider.request({
           method: MetamaskRequestMethod.eth_chainId,
         });
-
-        if (chainId[0] !== bscChainId) {
+        if (chainId !== bscChainId) {
           setNotification({
             type: 'error',
             title: 'Error',
@@ -63,16 +62,6 @@ const useMetamask = (isSkip?: boolean): void => {
               type: 'error',
               title: 'Error',
               message: 'Account disabled',
-            });
-          }
-        });
-
-        provider.on(Web3Event.chainChanged, (chainIdLocal: string) => {
-          if (chainIdLocal !== bscChainId) {
-            setNotification({
-              type: 'error',
-              title: 'Error',
-              message: 'Change to BSC testnet',
             });
           }
         });

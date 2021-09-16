@@ -7,7 +7,6 @@ import { useShallowSelector } from 'hooks';
 import { State, WalletState } from 'types';
 import { shortenPhrase } from 'utils';
 import walletSelector from 'store/wallet/selectors';
-import useWindowSize from 'hooks/useWindowSize';
 import styles from './styles.module.scss';
 import { ConnectDropdownMenu } from '..';
 
@@ -27,10 +26,6 @@ const ConnectButton: FC<Props> = ({
 
   const buttonText = isConnected && address ? shortenPhrase(address) : 'CONNECT WALLET';
 
-  const { width } = useWindowSize();
-
-  const isDesktopSize = width < 760;
-
   const [isConnectDropdownMenuVisible, setIsConnectDropdownMenuVisible] = useState(false);
 
   const toggleConnectDropdownMenu = useCallback(() => {
@@ -47,7 +42,7 @@ const ConnectButton: FC<Props> = ({
         <Button
           color="transparentWhite"
           onClick={connectBtnHandler}
-          disabled={isDesktopSize}
+          disabled={isConnected}
           className={cx(className, styles[color])}
         >
           <Text className={styles.text} size="xs">{buttonText}</Text>

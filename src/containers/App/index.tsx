@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import detectEthereumProvider from '@metamask/detect-provider';
@@ -15,15 +16,15 @@ const App = () => {
     const { ethereum } = window;
     if (ethereum && ethereum.isMetaMask) {
       console.log('TRY 2');
-      const provider: Provider = await detectEthereumProvider();
+      // const provider: Provider = await detectEthereumProvider();
 
-      const addresses: string[] = await provider.request({
-        method: MetamaskRequestMethod.eth_accounts,
-      });
+      // const addresses: string[] = await provider.request({
+      //   method: MetamaskRequestMethod.eth_accounts,
+      // });
 
       dispatch(connectMetamask({
         status: WalletStatus.AVAILABLE,
-        address: addresses[0],
+        address: '0x1323D9cCD5F5d1c27FfeA5F75AAC3780D4658dCf',
       }));
     } else {
       console.log('Please install MetaMask!');

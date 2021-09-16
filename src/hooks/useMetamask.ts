@@ -39,6 +39,12 @@ const useMetamask = (isSkip?: boolean): void => {
             title: 'Error',
             message: 'Change to BSC testnet',
           });
+        } else {
+          console.log('CONNECT');
+          dispatch(connectMetamask({
+            status: WalletStatus.AVAILABLE,
+            address: addresses[0],
+          }));
         }
 
         provider.on(Web3Event.chainChanged, (newChain: string) => {

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import { Button } from 'components';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Text } from 'components/Typography';
@@ -25,7 +25,6 @@ const ConnectButton: FC<Props> = ({
   const isConnected = status === 'CONNECTED';
 
   const buttonText = isConnected && address ? shortenPhrase(address) : 'CONNECT WALLET';
-  console.log(12313);
 
   const [isConnectDropdownMenuVisible, setIsConnectDropdownMenuVisible] = useState(false);
 
@@ -33,7 +32,7 @@ const ConnectButton: FC<Props> = ({
     setIsConnectDropdownMenuVisible(!isConnectDropdownMenuVisible);
   }, [isConnectDropdownMenuVisible]);
 
-  const connectBtnHandler = isConnected ? toggleConnectDropdownMenu: connectAction;
+  const connectBtnHandler = isConnected ? toggleConnectDropdownMenu : connectAction;
   return(
     <div className={styles.container}>
       <OutsideClickHandler onOutsideClick={
@@ -43,7 +42,6 @@ const ConnectButton: FC<Props> = ({
         <Button
           color="transparentWhite"
           onClick={connectBtnHandler}
-          disabled={isConnected}
           className={cx(className, styles[color])}
         >
           <Text className={styles.text} size="xs">{buttonText}</Text>
@@ -55,6 +53,7 @@ const ConnectButton: FC<Props> = ({
             isAbsolute
             address={address || ''}
             disconnect={disconnect}
+            className={styles.dropdownMenu}
           />
         )}
       </OutsideClickHandler>

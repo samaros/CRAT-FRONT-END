@@ -44,16 +44,16 @@ const Banner: FC<Props> = ({ scrollToBuy }) => {
       </div>
       <div className={styles.bottomBlock}>
         <img
-          style={{ transform: `${scrollY < 1000 ? `translate(${scrollY / 10}px, -${scrollY / 10}px)` : 'none'}` }}
+          style={{ transform: `${scrollY < 1500 ? `translate(${scrollY / 10}px, -${scrollY / 10}px)` : 'none'}` }}
           src={RocketPng}
           alt=""
           className={styles.rocket}
         />
         <div className={styles.cards}>
-          <div style={{ transform: `${scrollY < 1000 ? `translateX(${scrollY / 30}px)` : 'none'}` }}>
+          <div style={{ transform: `${scrollY < 1500 ? `translateX(${scrollY / 30}px)` : 'none'}` }}>
             <MaxSupply className={styles.maxSupply} />
           </div>
-          <div style={{ transform: `${scrollY < 1000 ? `translateX(-${scrollY / 30}px)` : 'none'}` }}>
+          <div style={{ transform: `${scrollY < 1500 ? `translateX(-${scrollY / 30}px)` : 'none'}` }}>
             <CoinPercent />
           </div>
         </div>

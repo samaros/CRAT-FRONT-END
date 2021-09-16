@@ -1,2 +1,2 @@
-export const crowdsaleContractAddress = '0x330e26CcE05689Ba83B638435e4cDe2D044b530F';
-export const cratTokenAddress = '0x62630D99729457F8F3e7886277e1B4E23700Aa48';
+export const crowdsaleContractAddress = '0x2B6b08a062d8475DF63EF4656442A870fbE4FC76';
+export const cratTokenAddress = '0xd83BC6443692e4cF9857961b7165eea5D3305893';

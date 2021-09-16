@@ -41,6 +41,16 @@ const useMetamask = (isSkip?: boolean): void => {
           });
         }
 
+        provider.on(Web3Event.chainChanged, (newChain: string) => {
+          if (bscChainId !== newChain) {
+            setNotification({
+              type: 'error',
+              title: 'Error',
+              message: 'Change to BSC testnet',
+            });
+          }
+        });
+
         provider.on(Web3Event.accountsChanged, (addressesOtherAccount: string[]) => {
           if (addressesOtherAccount.length) {
             const address = addressesOtherAccount[0];

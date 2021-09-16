@@ -60,11 +60,13 @@ const BuyCrat: FC<Props> = ({
   const [spendAmount, setSpendAmount] = useState('');
 
   const receiveAmount = () => {
+    let res = 0;
     if (Object.keys(selectedBuyToken)) {
-      return (+spendAmount * +selectedBuyToken?.value?.price) / currentStagePriceUsd;
+      res = (+spendAmount * +selectedBuyToken?.value?.price) / currentStagePriceUsd;
     }
 
-    return +spendAmount;
+    // eslint-disable-next-line no-restricted-globals
+    return isNaN(res) ? 0 : res;
   };
 
   const isBuyCratOverflow = (currentStageTokensSold + +receiveAmount()) > currentStageTokensLimit;

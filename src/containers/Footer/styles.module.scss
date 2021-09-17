@@ -34,14 +34,14 @@
   position: relative;
   height: 200px;
   @include flexbox;
-  &::before {
-    content: ' ';
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: $color-green;
-    filter: blur(120px);
-  }
+  // &::before {
+  //   content: ' ';
+  //   position: absolute;
+  //   width: 100px;
+  //   height: 100px;
+  //   background: $color-green;
+  //   filter: blur(120px);
+  // }
 }
 
 .iconWrapper {

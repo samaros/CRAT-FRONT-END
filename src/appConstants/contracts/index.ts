@@ -1,3 +1,3 @@
-export const crowdsaleContractAddress = '0x2B6b08a062d8475DF63EF4656442A870fbE4FC76';
-export const cratTokenAddress = '0xd83BC6443692e4cF9857961b7165eea5D3305893';
+export const crowdsaleContractAddress = '0x41dA6D6Ce4c11ecd071A81cC1C0E552C48A861d3';
+export const cratTokenAddress = '0xeD372D4eC03472b4309A179f98bA1a636020dFaA';
 export const chainId = '0x61';

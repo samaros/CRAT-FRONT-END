@@ -123,7 +123,7 @@ const BuyCrat: FC<Props> = ({
           hideSelectedOptions
           onChange={selectHandler as any}
           classNameControl={styles.select}
-          disabled={status !== 'ACTIVE'}
+          // disabled={status !== 'ACTIVE'}
         />
       </div>
       <div className={styles.inputMask}>

@@ -46,6 +46,7 @@ const BuyCrat: FC<Props> = ({
     currentStagePriceUsd,
     currentStageTokensLimit,
     currentStageTokensSold,
+    status,
   } = useShallowSelector<State, StageState>(stageSelector.getStage);
 
   const closeModal = useCallback(() => {
@@ -114,6 +115,7 @@ const BuyCrat: FC<Props> = ({
           onChange={handleSpendAmountChange}
           isBorder={false}
           classNameInput={styles.input}
+          disabled={status !== 'ACTIVE'}
         />
         <Select
           options={tokenData as any}
@@ -121,6 +123,7 @@ const BuyCrat: FC<Props> = ({
           hideSelectedOptions
           onChange={selectHandler as any}
           classNameControl={styles.select}
+          disabled={status !== 'ACTIVE'}
         />
       </div>
       <div className={styles.inputMask}>

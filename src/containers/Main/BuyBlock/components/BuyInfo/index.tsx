@@ -1,7 +1,9 @@
 import { Carousel } from 'components';
 import React, { FC } from 'react';
 import cx from 'classnames';
-import { Token } from 'types';
+import { StageState, State, Token } from 'types';
+import stageSelector from 'store/stage/selectors';
+import { useShallowSelector } from 'hooks';
 import { CurrentRates, CurrentPrice, CurrentStage } from './components';
 import styles from './styles.module.scss';
 
@@ -25,44 +27,57 @@ const BuyInfo: FC<Props> = ({
   price,
   nextStagePrice,
   tokens,
-}) => (
-  <div className={cx(styles.container, className)}>
-    <div className={styles.blockInfo}>
-      <CurrentStage
-        stage={stage}
-        daysLeft={daysLeft}
-        progressMax={progressMax}
-        progressCur={progressCur}
-      />
-      <CurrentPrice
-        price={price}
-        nextStagePrice={nextStagePrice}
-      />
-      <CurrentRates
-        data={tokens}
-      />
-    </div>
-    <div className={styles.carouselInfo}>
-      <Carousel
-        classNameArrowLeft={styles.arrow}
-        classNameArrowRight={styles.arrow}
-      >
-        <CurrentStage
-          stage={stage}
-          daysLeft={daysLeft}
-          progressMax={progressMax}
-          progressCur={progressCur}
-        />
-        <CurrentPrice
-          price={price}
-          nextStagePrice={nextStagePrice}
-        />
+}) => {
+  const {
+    status,
+  } = useShallowSelector<State, StageState>(stageSelector.getStage);
+  return(
+    <div className={cx(styles.container, className)}>
+      <div className={styles.blockInfo}>
+        {status === 'ACTIVE' && (
+          <>
+            <CurrentStage
+              stage={stage}
+              daysLeft={daysLeft}
+              progressMax={progressMax}
+              progressCur={progressCur}
+            />
+            <CurrentPrice
+              price={price}
+              nextStagePrice={nextStagePrice}
+            />
+          </>
+        )}
         <CurrentRates
           data={tokens}
         />
-      </Carousel>
+      </div>
+      <div className={styles.carouselInfo}>
+        <Carousel
+          classNameArrowLeft={styles.arrow}
+          classNameArrowRight={styles.arrow}
+        >
+          {status === 'ACTIVE' && (
+          <>
+            <CurrentStage
+              stage={stage}
+              daysLeft={daysLeft}
+              progressMax={progressMax}
+              progressCur={progressCur}
+            />
+            <CurrentPrice
+              price={price}
+              nextStagePrice={nextStagePrice}
+            />
+          </>
+          )}
+          <CurrentRates
+            data={tokens}
+          />
+        </Carousel>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default BuyInfo;
